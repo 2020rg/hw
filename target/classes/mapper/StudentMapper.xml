@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.StudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.StudentDto">
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="student_id" property="studentId" jdbcType="INTEGER"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="enter_school_year" property="enterSchoolYear" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryStudentList" resultMap="BaseResultMap">
+        select * from student
+    </select>
+
+    <select id="queryStudentById" resultMap="BaseResultMap" parameterType="int">
+        select * from student where student_id = #{studentId}
+    </select>
+
+    <select id="queryStudentByPhone" resultMap="BaseResultMap" parameterType="int">
+        select * from student where phone = #{phone}
+    </select>
+
+    <insert id="addStudent" parameterType="com.ssrg.hw.dto.StudentDto">
+        insert into student(
+        name,
+        student_id,
+        school,
+        phone,
+        password,
+        enter_school_year
+        )values (
+        #{name},
+        #{studentId},
+        #{school},
+        #{phone},
+        #{password},
+        #{enterSchoolYear})
+    </insert>
+
+    <update id="updateStudent" parameterType="com.ssrg.hw.dto.StudentDto">
+        update student
+        set
+        name = #{name},
+        school = #{school},
+        phone = #{phone},
+        password = #{password},
+        enter_school_year = #{enterSchoolYear}
+        where student_id = #{studentId}
+    </update>
+
+    <delete id="deleteStudent" parameterType="int">
+        delete from student where student_id = #{studentId}
+    </delete>
+
+</mapper>

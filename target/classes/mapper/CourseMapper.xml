@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.CourseMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.CourseDto">
+        <result column="course_id" property="courseId" jdbcType="INTEGER"/>
+        <result column="course_name" property="courseName" jdbcType="VARCHAR"/>
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER"/>
+        <result column="invite_code" property="inviteCode" jdbcType="VARCHAR"/>
+        <result column="class_representative_id" property="classRepresentativeId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="queryCourseByTeacherId" resultMap="BaseResultMap" parameterType="int">
+        select * from course where teacher_id = #{teacherId}
+    </select>
+
+    <select id="queryCourseByCourseId" resultMap="BaseResultMap" parameterType="int">
+        select * from course where course_id = #{courseId}
+    </select>
+
+    <select id="queryCourseByInviteCode" resultMap="BaseResultMap" parameterType="string">
+        select * from course where invite_code = #{inviteCode}
+    </select>
+
+    <insert id="addCourse" parameterType="com.ssrg.hw.dto.CourseDto">
+        insert into course(
+        course_name,
+        teacher_id,
+        invite_code,
+        class_representative_id
+        )values (
+        #{courseName},
+        #{teacherId},
+        #{inviteCode},
+        #{classRepresentativeId})
+    </insert>
+
+    <update id="updateCourse" parameterType="com.ssrg.hw.dto.CourseDto">
+        update course
+        set
+        course_name = #{courseName},
+        teacher_id = #{teacherId},
+        invite_code = #{inviteCode},
+        class_representative_id = #{classRepresentativeId}
+        where course_id = #{courseId}
+    </update>
+
+    <delete id="deleteCourse" parameterType="int">
+        delete from course where course_id = #{courseId}
+    </delete>
+
+</mapper>
