@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.QuestionMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.QuestionDto">
+        <result column="question_id" property="questionId" jdbcType="INTEGER"/>
+        <result column="homework_id" property="homeworkId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryQuestionByHomeworkId" resultMap="BaseResultMap" parameterType="int">
+        select * from question where homework_id = #{homeworkId}
+    </select>
+
+    <select id="queryQuestionByQuestionId" resultMap="BaseResultMap" parameterType="int">
+        select * from question where question_id = #{questionId}
+    </select>
+
+    <insert id="addQuestion" parameterType="com.ssrg.hw.dto.QuestionDto">
+        insert into question(
+        homework_id,
+        content
+        )values (
+        #{homeworkId},
+        #{content})
+    </insert>
+
+    <update id="updateQuestion" parameterType="com.ssrg.hw.dto.QuestionDto">
+        update question
+        set
+        content = #{content}
+        where question_id = #{questionId}
+    </update>
+
+    <delete id="deleteQuestionByHomeworkId" parameterType="int">
+        delete from question where homework_id = #{homeworkId}
+    </delete>
+
+    <delete id="deleteQuestionByQuestionId" parameterType="int">
+        delete from question where question_id = #{questionId}
+    </delete>
+
+
+</mapper>
