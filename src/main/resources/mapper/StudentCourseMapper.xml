@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.StudentCourseMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.StudentCourseDto">
+        <result column="student_course_id" property="studentCourseId" jdbcType="INTEGER"/>
+        <result column="student_id" property="studentId" jdbcType="INTEGER"/>
+        <result column="course_id" property="courseId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="csResultMap" type="com.ssrg.hw.dto.StudentDto">
+        <result column="student_id" property="studentId" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="scResultMap" type="com.ssrg.hw.dto.CourseDto">
+        <result column="course_id" property="courseId" jdbcType="INTEGER"/>
+        <result column="course_name" property="courseName" jdbcType="VARCHAR"/>
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER"/>
+        <result column="invite_code" property="inviteCode" jdbcType="VARCHAR"/>
+        <result column="class_representative_id" property="classRepresentativeId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="queryCourseAllStudent" resultMap="csResultMap" parameterType="int">
+        select s.name , s.student_id
+        from student s , student_course sc
+        where sc.course_id = #{courseId} AND s.student_id = sc.student_id
+    </select>
+
+    <select id="queryStudentAllCourse" resultMap="scResultMap" parameterType="int">
+        select *
+        from course c , student_course sc
+        where sc.student_id = #{studentId} AND c.course_id = sc.course_id
+    </select>
+
+    <insert id="courseSelection">
+        insert into student_course(
+        student_id,
+        course_id
+        )values (
+        #{studentId},
+        #{courseId})
+    </insert>
+
+    <delete id="cancelCourse">
+        delete from student_course
+        where student_id = #{studentId} AND course_id = #{courseId}
+    </delete>
+
+</mapper>
