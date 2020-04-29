@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.StudentDdlMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.StudentDdlDto">
+        <result column="ddl_id" property="ddlId" jdbcType="INTEGER"/>
+        <result column="student_id" property="studentId" jdbcType="INTEGER"/>
+        <result column="homework_id" property="homeworkId" jdbcType="INTEGER"/>
+        <result column="warn" property="warn" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryDdlByStudentId" resultMap="BaseResultMap">
+        select * from student_ddl where student_id = #{studentId}
+    </select>
+
+    <insert id="addStudentDdl" parameterType="com.ssrg.hw.dto.StudentDdlDto">
+        insert into student_ddl(
+        student_id,
+        homework_id,
+        warn
+        )values (
+        #{studentId},
+        #{homeworkId},
+        #{warn})
+    </insert>
+
+    <update id="updateStudentDdl">
+        update student_ddl
+        set
+        warn = #{warn}
+        where ddl_id = #{ddlId}
+    </update>
+
+    <delete id="deleteStudentDdl" parameterType="int">
+        delete from student_ddl where ddl_id = #{ddlId}
+    </delete>
+
+</mapper>
