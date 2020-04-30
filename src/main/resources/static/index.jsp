@@ -10,10 +10,10 @@
 <html>
   <head>
     <title>登录</title>
-    <script type="text/javascript" src="resources/layui.js"></script>
-    <link rel="stylesheet" href="resources/layui.css">
+    <script type="text/javascript" src="../javascript/layui.js"></script>
+    <link rel="stylesheet" href="../javascript/layui.css">
   </head>
-  <body style="background:url(resources/bg.jpg) no-repeat;background-size: 100%">
+  <body style="background:url(../javascript/bg.jpg) no-repeat;background-size: 100%">
     <div id="login" style="text-align: center;margin-top: 300px">
       <h1>欢迎登录</h1>
       <br/><br/>
