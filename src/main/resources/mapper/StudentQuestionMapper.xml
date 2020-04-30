@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.StudentQuestionMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.StudentQuestionDto">
+        <result column="student_question_id" property="studentQuestionId" jdbcType="INTEGER"/>
+        <result column="student_id" property="studentId" jdbcType="INTEGER"/>
+        <result column="question_id" property="questionId" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="queryStudentQuestionByStudentId" resultMap="BaseResultMap" parameterType="int">
+        select * from student_question where student_id = #{studentId}
+    </select>
+
+    <select id="queryStudentQuestionByStudentQuestionId" resultMap="BaseResultMap" parameterType="int">
+        select * from student_question where student_question_id = #{studentQuestionId}
+    </select>
+
+    <insert id="addStudentQuestion" parameterType="com.ssrg.hw.dto.StudentQuestionDto">
+        insert into StudentQuestion(
+        student_question_id,
+        student_id,
+        question_id,
+        score
+        )values (
+        #{studentQuestionId},
+        #{studentId},
+        #{questionId},
+        #{score})
+    </insert>
+
+    <update id="updateStudentQuestion" parameterType="com.ssrg.hw.dto.StudentQuestionDto">
+        update StudentQuestion
+        set
+        student_id = #{studentId},
+        question_id = #{questionId},
+        score = #{score}
+        where student_question_id = #{StudentQuestionId}
+    </update>
+
+    <delete id="deleteStudentQuestion" parameterType="int">
+        delete from student_question where student_question_id = #{StudentQuestionId}
+    </delete>
+
+</mapper>

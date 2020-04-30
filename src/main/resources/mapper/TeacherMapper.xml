@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.TeacherMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.TeacherDto">
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="INTEGER"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryTeacherList" resultMap="BaseResultMap">
+        select * from teacher
+    </select>
+
+    <select id="queryTeacherByTeacherId" resultMap="BaseResultMap" parameterType="int">
+        select * from teacher where teacher_id = #{teacherId}
+    </select>
+
+    <select id="queryTeacherByPhone" resultMap="BaseResultMap" parameterType="int">
+        select * from teacher where phone = #{phone}
+    </select>
+
+    <insert id="addTeacher" parameterType="com.ssrg.hw.dto.TeacherDto">
+        insert into teacher(
+        name,
+        teacher_id,
+        school,
+        phone,
+        password
+        )values (
+        #{name},
+        #{teacherId},
+        #{school},
+        #{phone},
+        #{password})
+    </insert>
+
+    <update id="updateTeacher" parameterType="com.ssrg.hw.dto.TeacherDto">
+        update Teacher
+        set
+        name = #{name},
+        school = #{school},
+        phone = #{phone},
+        password = #{password}
+        where teacher_id = #{teacherId}
+    </update>
+
+    <delete id="deleteTeacher" parameterType="int">
+        delete from teacher where teacher_id = #{teacherId}
+    </delete>
+
+</mapper>
