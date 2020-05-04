@@ -10,9 +10,9 @@
 <head>
     <title>注册</title>
 </head>
-<script type="text/javascript" src="javascript/layui.js"></script>
-<link rel="stylesheet" href="javascript/layui.css">
-<body style="background:url(javascript/bg.jpg) no-repeat;background-size: 100%">
+<script type="text/javascript" src="layui/layui.js"></script>
+<link rel="stylesheet" href="layui/css/layui.css">
+<body style="background:url(img/bg.jpg) no-repeat;background-size: 100%">
     <div id="register" style="text-align: center;margin-top: 200px">
         <h1>注册</h1>
         <br/>
