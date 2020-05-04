@@ -13,7 +13,7 @@
     <script type="text/javascript" src="layui/layui.js"></script>
     <link rel="stylesheet" href="layui/css/layui.css">
   </head>
-  <body style="background:url(javascript/bg.jpg) no-repeat;background-size: 100%">
+  <body style="background:url(img/bg.jpg) no-repeat;background-size: 100%">
     <div id="login" style="text-align: center;margin-top: 300px">
       <h1>欢迎登录</h1>
       <br/><br/>
