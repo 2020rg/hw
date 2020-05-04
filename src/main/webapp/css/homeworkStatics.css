@@ -1,0 +1,52 @@
+.hw-info{
+    background-color: #ffffff;
+    border: 2px solid #009688;
+    margin:0 auto;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    height: 150px;
+    width: 600px;
+}
+
+.hw-photo{
+    float: left;
+    width: 40%;
+    height: 150px;
+}
+
+.hw-photo img{
+   height: 100%;
+   display: block;
+}
+
+.hw-panel{
+    float:right;
+    width:50%
+}
+
+.hw-panel h3{
+    font-family: "黑体";
+}
+
+.middle-bar{
+    margin-top:150px;
+    margin:0 auto;
+    margin-left: 110px;
+    margin-right: 80px;
+}
+
+.checkHomework:hover{
+    color:#009688;
+}
+
+.toHasChecked:hover{
+    color:#009688;
+}
+
+.toNotChecked:hover{
+    color:#009688;
+}
+
+.layui-icon {
+    font-size: 10px;
+}

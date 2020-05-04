@@ -1,0 +1,91 @@
+.body{
+    background-color: #2d77c2;
+}
+
+
+.brand{
+    font-size: 36px;
+}
+
+
+.mainContent{
+    margin-top: 70px;
+	margin-left: 200px;
+	width: 100%;
+	height:100%;
+}
+
+.myContainer{
+    margin-top: 100px;
+}
+
+#btnAddClass{
+    float: right;
+    position: absolute;
+    z-index: 20;
+}
+
+.btnAddClass:hover{
+    background-color: #2f2f2f;
+}
+
+.class-panel {
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+	background: #ffffff;
+	box-shadow: 0px 3px 2px #aab2bd;
+	padding-top: 15px;
+	padding-bottom: 5px;
+}
+.class-panel h4 {
+	margin-left: 10px;
+}
+
+#class-show{
+	background: url(../img/class.jpg) no-repeat center top;
+	margin-top: -15px;
+	background-attachment: relative;
+	background-position: center center;
+	min-height: 160px;
+	width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#class-show h3 {
+	color: white;
+	padding-top: 50px;
+	margin: 0px;
+	text-align: center;
+}
+#class-show h6 {
+	color: white;
+	text-align: center;
+	margin-bottom: 0px;
+	font-weight: 900;
+}
+.class-show {
+	background: #4ECDC4;
+	height: 50px;
+}
+.class-show:hover {
+	background: #2f2f2f;
+  -webkit-transition: background-color 0.6s;
+  -moz-transition: background-color 0.6s;
+  -o-transition: background-color 0.6s;
+  transition: background-color 0.6s;
+  cursor: pointer;
+}
+.class-show p {
+	color: white;
+	padding-top: 15px;
+	font-weight: 400;
+	font-size: 15px;
+}
+
