@@ -13,41 +13,41 @@ import java.util.List;
 public class StudentHomeworkController {
 
     @Autowired
-    private IStudentHomeworkService studenthomeworkService;
+    private IStudentHomeworkService shService;
 
-    @GetMapping("/queryStudentHomeworkByStudentId")
-    public List<StudentHomeworkDto> queryStudentHomeworkByStudentId(int studentId){
-        List<StudentHomeworkDto> StudentHomeworkList = StudentHomeworkService.queryStudentHomeworkByStudentId(studentId);
-        return StudentHomeworkList;
+    @GetMapping("/querySHByStudentId")
+    public List<StudentHomeworkDto> querySHByStudentId(int studentId){
+        List<StudentHomeworkDto> studentHomeworkList = shService.querySHByStudentId(studentId);
+        return studentHomeworkList;
     }
 
-    @GetMapping("/queryStudentHomeworkByHomeworkId")
-    public StudentHomeworkDto queryStudentHomeworkByHomeworkId(int homeworkId){
-        StudentHomeworkDto StudentHomework = StudentHomeworkService.queryStudentHomeworkByHomeworkId(homeworkId);
+    @GetMapping("/querySHByHomeworkId")
+    public StudentHomeworkDto querySHByHomeworkId(int homeworkId){
+        StudentHomeworkDto studentHomework = shService.querySHByHomeworkId(homeworkId);
+        return studentHomework;
+    }
+
+    @GetMapping("/querySHByStudentHomeworkId")
+    public StudentHomeworkDto querySHByStudentHomeworkId(int studentHomeworkId){
+        StudentHomeworkDto StudentHomework = shService.querySHByStudentHomeworkId(studentHomeworkId);
         return StudentHomework;
     }
 
-    @GetMapping("/queryStudentHomeworkByStudentHomeworkId")
-    public StudentHomeworkDto queryStudentHomeworkByStudentHomeworkId(int studentHomeworkId){
-        StudentHomeworkDto StudentHomework = StudentHomeworkService.queryStudentHomeworkByStudentHomeworkId(studentHomeworkId);
-        return StudentHomework;
-    }
-
-    @GetMapping("/addStudentHomework")
-    public int addStudentHomework(StudentHomeworkDto studentHomeworkDto){
-        StudentHomeworkService.addStudentHomework(studentHomeworkDto);
+    @GetMapping("/addSH")
+    public int addSH(StudentHomeworkDto studentHomeworkDto){
+        shService.addSH(studentHomeworkDto);
         return 1;
     }
 
-    @GetMapping("/deleteStudentHomework")
-    public int deleteStudentHomework(int studentHomeworkId){
-        StudentHomeworkService.deleteStudentHomework(studentHomeworkId);
+    @GetMapping("/deleteSH")
+    public int deleteSH(int studentHomeworkId){
+        shService.deleteSH(studentHomeworkId);
         return 1;
     }
 
-    @GetMapping("/updateStudentHomework")
-    public int updateStudentHomework(StudentHomeworkDto studentHomeworkDto){
-        StudentHomeworkService.updateStudentHomework(studentHomeworkDto);
+    @GetMapping("/updateSH")
+    public int updateSH(StudentHomeworkDto studentHomeworkDto){
+        shService.updateSH(studentHomeworkDto);
         return 1;
     }
 }

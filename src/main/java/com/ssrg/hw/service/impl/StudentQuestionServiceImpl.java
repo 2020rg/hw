@@ -15,30 +15,25 @@ public class StudentQuestionServiceImpl implements IStudentQuestionService {
     private StudentQuestionMapper studentQuestionMapper;
 
     @Override
-    public List<StudentQuestionDto> queryStudentQuestionByStudentId(int studentId){
-        return  StudentQuestionMapper.queryStudentQuestionByStudentId(studentId);
+    public StudentQuestionDto querySQByStudentQuestionId(int studentQuestionId){
+        return studentQuestionMapper.querySQByStudentQuestionId(studentQuestionId);
     }
 
     @Override
-    public StudentQuestionDto queryStudentQuestionByStudentQuestionId(int studentQuestionId){
-        return StudentQuestionMapper.queryStudentQuestionByStudentQuestionId(studentQuestionId);
-    }
-
-    @Override
-    public int addStudentQuestion(StudentQuestionDto studentQuestionDto){
-        StudentQuestionMapper.addStudentQuestion(studentQuestionDto);
+    public int addSQ(StudentQuestionDto studentQuestionDto){
+        studentQuestionMapper.addSQ(studentQuestionDto);
         return 1;
     }
 
     @Override
-    public int deleteStudentQuestion(int studentQuestionId){
-        StudentQuestionMapper.deleteStudentQuestion(studentQuestionId);
+    public int deleteSQ(int homeworkId){
+        studentQuestionMapper.deleteSQ(homeworkId);
         return 1;
     }
 
     @Override
-    public int updateStudentQuestion(StudentQuestionDto studentQuestionDto){
-        StudentQuestionMapper.updateStudentQuestion(studentQuestionDto);
+    public int updateSQ(StudentQuestionDto studentQuestionDto){
+        studentQuestionMapper.updateSQ(studentQuestionDto);
         return 1;
     }
 }

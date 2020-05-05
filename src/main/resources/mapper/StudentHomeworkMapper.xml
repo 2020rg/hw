@@ -6,27 +6,27 @@
         <result column="student_homework_id" property="studentHomeworkId" jdbcType="INTEGER"/>
         <result column="student_id" property="studentId" jdbcType="INTEGER"/>
         <result column="homework_id" property="homeworkId" jdbcType="INTEGER"/>
-        <result column="submit_time" property="submitTime" jdbcType="DATATIME"/>
+        <result column="submit_time" property="submitTime" jdbcType="TIMESTAMP"/>
         <result column="score" property="score" jdbcType="INTEGER"/>
         <result column="file" property="file" jdbcType="VARCHAR"/>
         <result column="answer" property="answer" jdbcType="VARCHAR"/>
         <result column="submit_ok" property="submitOK" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="queryStudentHomeworkByStudentId" resultMap="BaseResultMap" parameterType="int">
+    <select id="querySHByStudentId" resultMap="BaseResultMap" parameterType="int">
         select * from student_homework where student_id = #{studentId}
     </select>
     
-    <select id="queryStudentHomeworkByHomeworkId" resultMap="BaseResultMap" parameterType="int">
+    <select id="querySHByHomeworkId" resultMap="BaseResultMap" parameterType="int">
         select * from student_homework where homework_id = #{homeworkId}
     </select>
 
-    <select id="queryStudentHomeworkByStudentHomeworkId" resultMap="BaseResultMap" parameterType="int">
+    <select id="querySHByStudentHomeworkId" resultMap="BaseResultMap" parameterType="int">
         select * from student_homework where student_homework_id = #{studentHomeworkId}
     </select>
 
-    <insert id="addStudentHomework" parameterType="com.ssrg.hw.dto.StudentHomeworkDto">
-        insert into StudentHomework(
+    <insert id="addSH" parameterType="com.ssrg.hw.dto.StudentHomeworkDto">
+        insert into student_homework(
         student_homework_id,
         student_id,
         homework_id,
@@ -46,8 +46,8 @@
         #{submitOK})
     </insert>
 
-    <update id="updateStudentHomework" parameterType="com.ssrg.hw.dto.StudentHomeworkDto">
-        update StudentHomework
+    <update id="updateSH" parameterType="com.ssrg.hw.dto.StudentHomeworkDto">
+        update student_homework
         set
         student_id = #{studentId},
         homework_id = #{homeworkId},
@@ -59,7 +59,7 @@
         where student_homework_id = #{studentHomeworkId}
     </update>
 
-    <delete id="deleteStudentHomework" parameterType="int">
+    <delete id="deleteSH" parameterType="int">
         delete from student_homework where student_homework_id = #{studentHomeworkId}
     </delete>
 

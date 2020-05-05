@@ -15,35 +15,35 @@ public class StudentHomeworkServiceImpl implements IStudentHomeworkService {
     private StudentHomeworkMapper StudentHomeworkMapper;
 
     @Override
-    public List<StudentHomeworkDto> queryStudentHomeworkByStudentId(int studentId){
-        return  StudentHomeworkMapper.queryStudentHomeworkByStudentId(studentId);
+    public List<StudentHomeworkDto> querySHByStudentId(int studentId){
+        return  StudentHomeworkMapper.querySHByStudentId(studentId);
     }
 
     @Override
-    public StudentHomeworkDto queryStudentHomeworkByHomeworkId(int homeworkId){
-        return StudentHomeworkMapper.queryStudentHomeworkByHomeworkId(homeworkId);
+    public StudentHomeworkDto querySHByHomeworkId(int homeworkId){
+        return StudentHomeworkMapper.querySHByHomeworkId(homeworkId);
     }
 
     @Override
-    public StudentHomeworkDto queryStudentHomeworkByStudentHomeworkId(int studentHomeworkId){
-        return StudentHomeworkMapper.queryStudentHomeworkByStudentHomeworkId(studentHomeworkId);
+    public StudentHomeworkDto querySHByStudentHomeworkId(int studentHomeworkId){
+        return StudentHomeworkMapper.querySHByStudentHomeworkId(studentHomeworkId);
     }
 
     @Override
-    public int addStudentHomework(StudentHomeworkDto studentHomeworkDto){
-        StudentHomeworkMapper.addStudentHomework(studentHomeworkDto);
+    public int addSH(StudentHomeworkDto studentHomeworkDto){
+        StudentHomeworkMapper.addSH(studentHomeworkDto);
         return 1;
     }
 
     @Override
-    public int deleteStudentHomework(int studentHomeworkId){
-        StudentHomeworkMapper.deleteStudentHomework(studentHomeworkId);
+    public int deleteSH(int studentHomeworkId){
+        StudentHomeworkMapper.deleteSH(studentHomeworkId);
         return 1;
     }
 
     @Override
-    public int updateStudentHomework(StudentHomeworkDto studentHomeworkDto){
-        StudentHomeworkMapper.updateStudentHomework(studentHomeworkDto);
+    public int updateSH(StudentHomeworkDto studentHomeworkDto){
+        StudentHomeworkMapper.updateSH(studentHomeworkDto);
         return 1;
     }
 }

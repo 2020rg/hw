@@ -25,20 +25,18 @@
     <insert id="addTeacher" parameterType="com.ssrg.hw.dto.TeacherDto">
         insert into teacher(
         name,
-        teacher_id,
         school,
         phone,
         password
         )values (
         #{name},
-        #{teacherId},
         #{school},
         #{phone},
         #{password})
     </insert>
 
     <update id="updateTeacher" parameterType="com.ssrg.hw.dto.TeacherDto">
-        update Teacher
+        update teacher
         set
         name = #{name},
         school = #{school},

@@ -4,15 +4,13 @@ import com.ssrg.hw.dto.StudentQuestionDto;
 
 import java.util.List;
 
-public interface ICourseService {
-
-	List<StudentQuestionDto> queryStudentQuestionByStudentId(int studentId);
+public interface IStudentQuestionService {
 	
-	StudentQuestionDto queryStudentQuestionByStudentQuestion(int studentQuestionId);
+	StudentQuestionDto querySQByStudentQuestionId(int studentQuestionId);
 
-	int addStudentQuestion(StudentQuestionDto studentQuestionDto);
+	int addSQ(StudentQuestionDto studentQuestionDto);
 
-	int deleteQuestion(int studentQuestionId);
+	int deleteSQ(int homeworkId);
 
-	int updateStudentQuestion(StudentQuestionDto studentQuestionDto);
+	int updateSQ(StudentQuestionDto studentQuestionDto);
 }

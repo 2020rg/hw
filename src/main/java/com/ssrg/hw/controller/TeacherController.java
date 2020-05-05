@@ -17,37 +17,37 @@ public class TeacherController {
 
     @GetMapping("/queryTeacherList")
     public List<TeacherDto> queryTeacherList(){
-        List<TeacherDto> teacherList = TeacherService.queryTeacherList();
+        List<TeacherDto> teacherList = teacherService.queryTeacherList();
         return teacherList;
     }
 
     @GetMapping("/queryTeacherByPhone")
-    public List<TeacherDto> queryTeacherByPhone(int phone){
-        TeacherDto teacher = TeacherService.queryTeacherByPhone(phone);
+    public TeacherDto queryTeacherByPhone(int phone){
+        TeacherDto teacher = teacherService.queryTeacherByPhone(phone);
         return teacher;
     }
 
     @GetMapping("/queryTeacherByTeacherId")
     public TeacherDto queryTeacherByTeacherId(int teacherId){
-        TeacherDto teacher = TeacherService.queryTeacherByTeacherId(teacherId);
+        TeacherDto teacher = teacherService.queryTeacherByTeacherId(teacherId);
         return teacher;
     }
 
     @GetMapping("/addTeacher")
-    public int addCourse(TeacherDto teacherDto){
-        TeacherService.addCourse(teacherDto);
+    public int addTeacher(TeacherDto teacherDto){
+        teacherService.addTeacher(teacherDto);
         return 1;
     }
 
     @GetMapping("/deleteTeacher")
-    public int deleteCourse(int teacherId){
-        TeacherService.deleteTeacher(teacherId);
+    public int deleteTeacher(int teacherId){
+        teacherService.deleteTeacher(teacherId);
         return 1;
     }
 
     @GetMapping("/updateTeacher")
-    public int updateCourse(TeacherDto teacherDto){
-        TeacherService.updateTeacher(teacherDto);
+    public int updateTeacher(TeacherDto teacherDto){
+        teacherService.updateTeacher(teacherDto);
         return 1;
     }
 }

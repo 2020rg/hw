@@ -14,5 +14,6 @@ public class StudentQuestionDto {
     private int studentId;
     private int questionId;
     private int score;
+    private String answer;
 
 }

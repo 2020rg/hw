@@ -10,39 +10,32 @@ import java.util.List;
 @Mapper
 @Repository
 public interface StudentQuestionMapper {
-
-    /**
-     * 查询学生的所有问题
-     * @param studentId
-     * @return
-     */
-    List<StudentQuestionDto> queryStudentQuestionByStudentId(int studentId);
     
     /**
-     * 根据ID查询问题
+     * 根据ID查询题目
      * @param studentQuestionId
      * @return
      */
-    StudentQuestionDto queryStudentQuestionByStudentQuestionId(int studentQuestionId);
+    StudentQuestionDto querySQByStudentQuestionId(int studentQuestionId);
 
     /**
-     * 添加学生的问题
+     * 学生作答后添加
      * @param studentQuestionDto
      * @return
      */
-    int addStudentQuestion(StudentQuestionDto studentQuestionDto);
+    int addSQ(StudentQuestionDto studentQuestionDto);
 
     /**
-     * 删除课程
-     * @param studentQuestionId
+     * 作业删除时，学生回答的相关题目删除
+     * @param homeworkId
      * @return
      */
-    int deleteQuestion(int studentQuestionId);
+    int deleteSQ(int homeworkId);
 
     /**
-     * 修改学生问题信息
+     * 学生重新回答题目或添加分数
      * @param studentQuestionDto
      * @return
      */
-    int updateStudentQuestion(StudentQuestionDto studentQuestionDto);
+    int updateSQ(StudentQuestionDto studentQuestionDto);
 }

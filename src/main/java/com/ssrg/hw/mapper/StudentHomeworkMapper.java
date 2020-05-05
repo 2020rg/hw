@@ -16,40 +16,40 @@ public interface StudentHomeworkMapper {
      * @param studentId
      * @return
      */
-    List<StudentHomeworkDto> queryStudentHomeworkByStudentId(int studentId);
+    List<StudentHomeworkDto> querySHByStudentId(int studentId);
 
     /**
      * 根据作业ID查询作业
      * @param homeworkId
      * @return
      */
-    StudentHomeworkDto queryStudentHomeworkByHomeworkId(int homeworkId);
+    StudentHomeworkDto querySHByHomeworkId(int homeworkId);
 
     /**
      * 根据Id查询作业
-     * @param StudentHomeworkId
-     * @return
-     */
-    StudentHomeworkDto queryStudentHomeworkByStudentHomeworkId(int studentHomeworkId);
-
-    /**
-     * 添加学生作业
-     * @param studentHomeworkDto
-     * @return
-     */
-    int addStudentHomework(StudentHomeworkDto studentHomeworkDto);
-
-    /**
-     * 删除学生作业
      * @param studentHomeworkId
      * @return
      */
-    int deleteStudentHomework(int studentHomeworkId);
+    StudentHomeworkDto querySHByStudentHomeworkId(int studentHomeworkId);
 
     /**
      * 修改学生作业信息
      * @param studentHomeworkDto
      * @return
      */
-    int updateStudentHomework(StudentHomeworkDto studentHomeworkDto);
+    int updateSH(StudentHomeworkDto studentHomeworkDto);
+
+    /**
+     * 为学生添加作业
+     * @param studentHomeworkDto
+     * @return
+     */
+    int addSH(StudentHomeworkDto studentHomeworkDto);
+
+    /**
+     * 为学生删除作业
+     * @param studentHomeworkId
+     * @return
+     */
+    int deleteSH(int studentHomeworkId);
 }

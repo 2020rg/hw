@@ -7,39 +7,37 @@
         <result column="student_id" property="studentId" jdbcType="INTEGER"/>
         <result column="question_id" property="questionId" jdbcType="INTEGER"/>
         <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="answer" property="answer" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="queryStudentQuestionByStudentId" resultMap="BaseResultMap" parameterType="int">
-        select * from student_question where student_id = #{studentId}
-    </select>
-
-    <select id="queryStudentQuestionByStudentQuestionId" resultMap="BaseResultMap" parameterType="int">
+    <select id="querySQByStudentQuestionId" resultMap="BaseResultMap" parameterType="int">
         select * from student_question where student_question_id = #{studentQuestionId}
     </select>
 
-    <insert id="addStudentQuestion" parameterType="com.ssrg.hw.dto.StudentQuestionDto">
-        insert into StudentQuestion(
-        student_question_id,
+    <insert id="addSQ" parameterType="com.ssrg.hw.dto.StudentQuestionDto">
+        insert into student_question(
         student_id,
         question_id,
-        score
+        score,
+        answer
         )values (
-        #{studentQuestionId},
         #{studentId},
         #{questionId},
-        #{score})
+        #{score},
+        #{answer})
     </insert>
 
-    <update id="updateStudentQuestion" parameterType="com.ssrg.hw.dto.StudentQuestionDto">
-        update StudentQuestion
+    <update id="updateSQ" parameterType="com.ssrg.hw.dto.StudentQuestionDto">
+        update student_question
         set
         student_id = #{studentId},
         question_id = #{questionId},
-        score = #{score}
+        score = #{score},
+        answer = #{answer}
         where student_question_id = #{StudentQuestionId}
     </update>
 
-    <delete id="deleteStudentQuestion" parameterType="int">
+    <delete id="deleteSQ" parameterType="int">
         delete from student_question where student_question_id = #{StudentQuestionId}
     </delete>
 

@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface IStudentHomeworkService {
 
-    List<StudentHomeworkDto> queryStudentHomeworkByStudentId(int studentId);
+    List<StudentHomeworkDto> querySHByStudentId(int studentId);
 
-    StudentHomeworkDto queryStudentHomeworkByHomeworkId(int homeworkId);
+    StudentHomeworkDto querySHByHomeworkId(int homeworkId);
 
-    StudentHomeworkDto queryStudentHomeworkByStudentHomeworkId(int studentHomeworkId);
+    StudentHomeworkDto querySHByStudentHomeworkId(int studentHomeworkId);
 
-    int addStudentHomework(StudentHomeworkDto studentHomeworkDto);
+    int addSH(StudentHomeworkDto studentHomeworkDto);
 
-    int deleteStudentHomework(int studentHomeworkId);
+    int deleteSH(int studentHomeworkId);
 
-    int updateStudentHomework(StudentHomeworkDto studentHomeworkDto);
+    int updateSH(StudentHomeworkDto studentHomeworkDto);
 }

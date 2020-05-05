@@ -15,33 +15,27 @@ public class StudentQuestionController {
     @Autowired
     private IStudentQuestionService StudentQuestionService;
 
-    @GetMapping("/queryStudentQuestionByStudentId")
-    public List<StudentQuestionDto> queryStudentQuestionByStudentId(int studentId){
-        List<StudentQuestionDto> StudentQuestionList = StudentQuestionService.queryStudentQuestionByTeacherId(teacherId);
-        return StudentQuestionList;
-    }
-
-    @GetMapping("/queryStudentQuestionByStudentQuestionId")
-    public StudentQuestionDto queryStudentQuestionByStudentQuestionId(int studentQuestionId){
-        StudentQuestionDto StudentQuestion = StudentQuestionService.queryStudentQuestionByStudentQuestionId(studentQuestionId);
+    @GetMapping("/querySQByStudentQuestionId")
+    public StudentQuestionDto querySQByStudentQuestionId(int studentQuestionId){
+        StudentQuestionDto StudentQuestion = StudentQuestionService.querySQByStudentQuestionId(studentQuestionId);
         return StudentQuestion;
     }
 
-    @GetMapping("/addStudentQuestion")
-    public int addStudentQuestion(StudentQuestionDto studentQuestionDto){
-        StudentQuestionService.addStudentQuestion(studentQuestionDto);
+    @GetMapping("/addSQ")
+    public int addSQ(StudentQuestionDto studentQuestionDto){
+        StudentQuestionService.addSQ(studentQuestionDto);
         return 1;
     }
 
-    @GetMapping("/deleteStudentQuestion")
-    public int deleteStudentQuestion(int studentQuestionId){
-        StudentQuestionService.deleteStudentQuestion(studentQuestionId);
+    @GetMapping("/deleteSQ")
+    public int deleteSQ(int studentQuestionId){
+        StudentQuestionService.deleteSQ(studentQuestionId);
         return 1;
     }
 
-    @GetMapping("/updateStudentQuestion")
-    public int updateStudentQuestion(StudentQuestionDto studentQuestionDto){
-        StudentQuestionService.updateStudentQuestion(studentQuestionDto);
+    @GetMapping("/updateSQ")
+    public int updateSQ(StudentQuestionDto studentQuestionDto){
+        StudentQuestionService.updateSQ(studentQuestionDto);
         return 1;
     }
 }

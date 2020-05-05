@@ -50,5 +50,5 @@ public interface TeacherMapper {
      * @param teacherDto
      * @return
      */
-    int updateCourse(TeacherDto teacherDto);
+    int updateTeacher(TeacherDto teacherDto);
 }
