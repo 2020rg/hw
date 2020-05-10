@@ -94,6 +94,12 @@
             <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
         <!-- jsp整合结束-->
+
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+            <version>1.2.2.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -103,13 +109,13 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-
         <resources>
             <resource>
+                <!--解决实体类启动和jar启动web页面会报404的错误-->
                 <directory>src/main/webapp</directory>
                 <targetPath>META-INF/resources</targetPath>
                 <includes>
-                    <include>**/*.*</include>
+                    <include>**/**</include>
                 </includes>
             </resource>
         </resources>
