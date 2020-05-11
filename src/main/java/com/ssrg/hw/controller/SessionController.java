@@ -16,7 +16,7 @@ public class SessionController {
     public Map<String,Object> getSession(HttpServletRequest request){
         Map<String,Object> result = new HashMap<>();
 
-        result.put("studentId",request.getSession().getAttribute("studentId"));
+        result.put("userID",request.getSession().getAttribute("userID"));
 
         return result;
     }
