@@ -6,6 +6,7 @@ import com.ssrg.hw.dto.StudentDdlDto;
 import com.ssrg.hw.service.ICourseService;
 import com.ssrg.hw.service.IHomeworkService;
 import com.ssrg.hw.service.IStudentDdlService;
+import com.ssrg.hw.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,20 +30,19 @@ public class StudentDdlController {
     @Autowired
     private ICourseService courseService;
 
+    @Autowired
+    private ITeacherService teacherService;
+
     @RequestMapping("/queryDDLByStudentId")
     public List<Map<String,Object>> queryDdlByStudentId(HttpServletRequest request){
         int studentId = (int)request.getSession().getAttribute("studentId");
         List<Map<String,Object>> resultMap = new ArrayList<>();
-        List<Object> result = new ArrayList<>();
-        List<HomeworkDto> hw = new ArrayList<>();
         List<StudentDdlDto> sd = studentDdlService.queryDdlByStudentId(studentId);
+
         for (StudentDdlDto s:sd) {
-            hw.add(homeworkService.queryHomeworkByHomeworkId(s.getHomeworkId()));
+
         }
-        for(int i = 0; i < sd.size(); i++){
-            result.add(hw.get(i));
-            result.add(sd.get(i));
-        }
+
         return resultMap;
     }
 

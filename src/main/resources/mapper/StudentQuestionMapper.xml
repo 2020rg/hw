@@ -3,15 +3,15 @@
 <mapper namespace="com.ssrg.hw.mapper.StudentQuestionMapper">
 
     <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.StudentQuestionDto">
-        <result column="student_question_id" property="studentQuestionId" jdbcType="INTEGER"/>
         <result column="student_id" property="studentId" jdbcType="INTEGER"/>
         <result column="question_id" property="questionId" jdbcType="INTEGER"/>
         <result column="score" property="score" jdbcType="INTEGER"/>
         <result column="answer" property="answer" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="querySQByStudentQuestionId" resultMap="BaseResultMap" parameterType="int">
-        select * from student_question where student_question_id = #{studentQuestionId}
+    <select id="querySQBySIdAndQId" parameterType="int" resultMap="BaseResultMap">
+        select * from student_question
+        where student_id = #{studentId} AND question_id = #{questionId}
     </select>
 
     <insert id="addSQ" parameterType="com.ssrg.hw.dto.StudentQuestionDto">
@@ -30,15 +30,20 @@
     <update id="updateSQ" parameterType="com.ssrg.hw.dto.StudentQuestionDto">
         update student_question
         set
-        student_id = #{studentId},
-        question_id = #{questionId},
         score = #{score},
         answer = #{answer}
-        where student_question_id = #{StudentQuestionId}
+        where student_id = #{studentId} AND question_id = #{questionId}
+    </update>
+
+    <update id="submitQuestion">
+        update student_question
+        set
+        answer = #{answer}
+        where student_id = #{studentId} AND question_id = #{questionId}
     </update>
 
     <delete id="deleteSQ" parameterType="int">
-        delete from student_question where student_question_id = #{StudentQuestionId}
+        delete from student_question where student_id = #{studentId} AND question_id = #{questionId}
     </delete>
 
 </mapper>

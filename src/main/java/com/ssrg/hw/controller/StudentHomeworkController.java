@@ -4,6 +4,7 @@ package com.ssrg.hw.controller;
 import com.ssrg.hw.dto.CourseDto;
 import com.ssrg.hw.dto.HomeworkDto;
 import com.ssrg.hw.dto.StudentHomeworkDto;
+import com.ssrg.hw.dto.TeacherDto;
 import com.ssrg.hw.service.ICourseService;
 import com.ssrg.hw.service.IHomeworkService;
 import com.ssrg.hw.service.IStudentHomeworkService;
@@ -111,5 +112,27 @@ public class StudentHomeworkController {
     public int updateSH(StudentHomeworkDto studentHomeworkDto){
         shService.updateSH(studentHomeworkDto);
         return 1;
+    }
+
+    @RequestMapping("/getDDL")
+    public List<Map<String,Object>> getDDL(HttpServletRequest request){
+        List<Map<String,Object>> result = new ArrayList<>();
+        int studentId = (int)request.getSession().getAttribute("userId");
+        List<StudentHomeworkDto> shlist = shService.querySHByStudentId(studentId);
+        for(StudentHomeworkDto s:shlist){
+            Map<String,Object> map = new HashMap<>();
+            HomeworkDto h = homeworkService.queryHomeworkByHomeworkId(s.getHomeworkId());
+            CourseDto c = courseService.queryCourseByCourseId(h.getCourseId());
+            TeacherDto t = teacherService.queryTeacherByTeacherId(c.getTeacherId());
+            map.put("courseName",c.getCourseName());
+            map.put("teacherName",t.getName());
+            map.put("homeworkID",h.getHomeworkId());
+            map.put("homeworkTitle",h.getTitle());
+            map.put("homeworkIntroduce",h.getIntroduce());
+            map.put("homeworkDDL",h.getDdl());
+            map.put("homeworkSpareTime","24小时");
+            result.add(map);
+        }
+        return result;
     }
 }

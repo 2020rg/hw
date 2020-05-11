@@ -14,4 +14,30 @@ public class QuestionDto {
     private int questionId;
     private int homeworkId;
     private String content;
+
+    public int getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+
+    public int getHomeworkId() {
+        return homeworkId;
+    }
+
+    public void setHomeworkId(int homeworkId) {
+        this.homeworkId = homeworkId;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+
 }

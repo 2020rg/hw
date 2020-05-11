@@ -19,7 +19,7 @@ public class QuestionController {
     private IQuestionService questionService;
 
     @RequestMapping("/queryQuestionByHomeworkId")
-    public List<QuestionDto> queryQuestionByHomeworkId(int homeworkId){
+    public List<QuestionDto> queryQuestionByHomeworkId(@RequestParam("homeworkID") int homeworkId){
         return questionService.queryQuestionByHomeworkId(homeworkId);
     }
 

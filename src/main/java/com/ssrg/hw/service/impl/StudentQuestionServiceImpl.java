@@ -15,8 +15,8 @@ public class StudentQuestionServiceImpl implements IStudentQuestionService {
     private StudentQuestionMapper studentQuestionMapper;
 
     @Override
-    public StudentQuestionDto querySQByStudentQuestionId(int studentQuestionId){
-        return studentQuestionMapper.querySQByStudentQuestionId(studentQuestionId);
+    public StudentQuestionDto querySQBySIdAndQId(int studentId,int questionId){
+        return studentQuestionMapper.querySQBySIdAndQId(studentId,questionId);
     }
 
     @Override
@@ -35,5 +35,10 @@ public class StudentQuestionServiceImpl implements IStudentQuestionService {
     public int updateSQ(StudentQuestionDto studentQuestionDto){
         studentQuestionMapper.updateSQ(studentQuestionDto);
         return 1;
+    }
+
+    @Override
+    public int submitQuestion(int studentId, int questionId, String answer){
+        return studentQuestionMapper.submitQuestion(studentId, questionId, answer);
     }
 }

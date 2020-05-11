@@ -1,8 +1,10 @@
 package com.ssrg.hw.mapper;
 
 
+import com.ssrg.hw.dto.QuestionDto;
 import com.ssrg.hw.dto.StudentQuestionDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,13 +12,15 @@ import java.util.List;
 @Mapper
 @Repository
 public interface StudentQuestionMapper {
-    
+
+
     /**
-     * 根据ID查询题目
-     * @param studentQuestionId
+     * 根据学生ID和题目ID查询
+     * @param studentId
+     * @param questionId
      * @return
      */
-    StudentQuestionDto querySQByStudentQuestionId(int studentQuestionId);
+    StudentQuestionDto querySQBySIdAndQId(int studentId,int questionId);
 
     /**
      * 学生作答后添加
@@ -38,4 +42,12 @@ public interface StudentQuestionMapper {
      * @return
      */
     int updateSQ(StudentQuestionDto studentQuestionDto);
+
+    /**
+     * 学生提交题目答案
+     * @param questionId
+     * @param answer
+     * @return
+     */
+    int submitQuestion(@Param("studentId") int studentId,@Param("questionId") int questionId, @Param("answer") String answer);
 }
