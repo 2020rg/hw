@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.TeacherCourseMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.TeacherCourseDto">
+        <result column="teacher_course_id" property="teacher_course_id" jdbcType="INTEGER"/>
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER"/>
+        <result column="course_id" property="courseId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="queryTeacherCourseList" resultMap="BaseResultMap">
+        select * from teacher_course
+    </select>
+
+    <select id="queryTeacherCourseByTeacherId" resultMap="BaseResultMap" parameterType="int">
+        select * from teacher_course where teacher_id = #{teacherId}
+    </select>
+
+    <select id="queryTeacherCourseByCourseId" resultMap="BaseResultMap" parameterType="int">
+        select * from teacher_course where course_id = #{courseId}
+    </select>
+
+    <select id="queryTeacherCourseByTeacherCourseId" resultMap="BaseResultMap" parameterType="int">
+        select * from teacher_course where teacher_course_id = #{teacher_course_id}
+    </select>
+
+    <insert id="addTeacherCourse" parameterType="com.ssrg.hw.dto.TeacherCourseDto">
+        insert into teacher_course(
+        teacher_course_id,
+        teacher_id,
+        course_id
+        )values (
+        #{teacher_course_id},
+        #{teacherId},
+        #{courseId})
+    </insert>
+
+    <update id="updateTeacherCourse" parameterType="com.ssrg.hw.dto.TeacherCourseDto">
+        update teacher_course
+        set
+        teacher_course_id = #{teacher_course_id},
+        teacher_id = #{teacherId},
+        course_id = #{courseId}
+        where teacher_course_id = #{teacher_course_id}
+    </update>
+
+    <delete id="deleteTeacherCourse" parameterType="int">
+        delete from teacher_course where teacher_course_id = #{teacher_course_id}
+    </delete>
+
+</mapper>

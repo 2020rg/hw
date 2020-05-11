@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.CourseResourceMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.CourseResourceDto">
+        <result column="resource_id" property="resourceId" jdbcType="INTEGER"/>
+        <result column="course_id" property="courseId" jdbcType="INTEGER"/>
+        <result column="upload_time" property="uploadTime" jdbcType="TIMESTAMP"/>
+        <result column="resource_name" property="resourceName" jdbcType="VARCHAR"/>
+        <result column="resource_filepath" property="resourceFilepath" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryCourseResourceList" resultMap="BaseResultMap">
+        select * from course_resource
+    </select>
+
+    <select id="queryCourseResourceByCourseId" resultMap="BaseResultMap" parameterType="int">
+        select * from course_resource where course_id = #{courseId}
+    </select>
+
+    <select id="queryCourseResourceByResourceName" resultMap="BaseResultMap" parameterType="string">
+        select * from course_resource where resource_name = #{resourceName}
+    </select>
+
+    <select id="queryCourseResourceByResourceId" resultMap="BaseResultMap" parameterType="int">
+        select * from course_resource where resource_id = #{resourceId}
+    </select>
+
+    <insert id="addCourseResource" parameterType="com.ssrg.hw.dto.CourseResourceDto">
+        insert into course_resource(
+        resource_id,
+        course_id,
+        upload_time,
+        resource_name,
+        resource_filepath
+        )values (
+        #{resourceId},
+        #{courseId},
+        #{uploadTime},
+        #{resourceName},
+        #{resourceFilepath})
+    </insert>
+
+    <update id="updateCourseResource" parameterType="com.ssrg.hw.dto.CourseResourceDto">
+        update course_resource
+        set
+        resource_id = #{resourceId},
+        course_id = #{courseId},
+        upload_time = #{uploadTime}
+        resource_name = #{resourceName},
+        resource_filepath = #{resourceFilepath}
+        where resource_id = #{resourceId}
+    </update>
+
+    <delete id="deleteCourseResource" parameterType="int">
+        delete from course_resource where resource_id = #{resourceId}
+    </delete>
+
+</mapper>
