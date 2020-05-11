@@ -18,3 +18,4 @@ public class CourseResourceDto {
     private String resourceName;
     private String resourceFilepath;
 }
+
