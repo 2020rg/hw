@@ -33,9 +33,9 @@ public class LoginController {
                 if (password.equals(studentDto.getPassword())) {
                     flag = 0;
                     //登陆成功
-                    map.put("studentID", studentDto.getStudentId());
+                    map.put("studentId", studentDto.getStudentId());
 
-                    request.getSession().setAttribute("userID", studentDto.getStudentId());
+                    request.getSession().setAttribute("userId", studentDto.getStudentId());
                     request.getSession().setAttribute("name", studentDto.getName());
                     request.getSession().setAttribute("school", studentDto.getSchool());
                     request.getSession().setAttribute("phone", studentDto.getPhone());
