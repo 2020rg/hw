@@ -108,16 +108,40 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.4.2.RELEASE</version>
+                <configuration>
+                    <mainClass>com.ssrg.hw.HwApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
         <resources>
             <resource>
-                <!--解决实体类启动和jar启动web页面会报404的错误-->
-                <directory>src/main/webapp</directory>
-                <targetPath>META-INF/resources</targetPath>
+                <directory>src/main/java</directory>
                 <includes>
                     <include>**/**</include>
                 </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/webapp</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <targetPath>META-INF/resources</targetPath>
+                <filtering>false</filtering>
             </resource>
         </resources>
     </build>
