@@ -8,46 +8,123 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
-  <head>
+<head>
     <title>登录</title>
     <script type="text/javascript" src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquerysession.js"></script>
     <link rel="stylesheet" href="layui/css/layui.css">
-  </head>
-  <body style="background:url(img/bg.jpg) no-repeat;background-size: 100%">
-    <div id="login" style="text-align: center;margin-top: 300px">
-      <h1>欢迎登录</h1>
-      <br/><br/>
-      <div class="layui-form-item">
-        <div class="layui-inline">
-          <lable class="layui-form-label" >用户名：</lable>
-          <!--<i class="layui-icon layui-icon-username"></i>-->
-          <input type="text" id="username" autocomplete="on" placeholder="请输入用户名" class="layui-input">
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <div class="layui-inline">
-          <lable class="layui-form-label">密码：</lable>
-          <!--<i class="layui-icon layui-icon-password"></i>-->
-          <input type="text" id="password" type="password" autocomplete="on" placeholder="请输入密码" class="layui-input">
-        </div>
-      </div>
-      <br/><br/>
-      <div class="layui-form-item">
-        <div class="layui-inline">
-          <select name="auth">
-            <option value="">请选择身份</option>
-            <option value="学生">学生</option>
-            <option value="老师">老师</option>
-          </select>
-        </div>
-        <input type="checkbox" name="remember" title="记住密码" style="margin-right: 0px">记住密码
-        <br/><br/>
-      </div>
+    <link rel="stylesheet" href="css/login.css">
 
-      <button type="button" class="layui-btn layui-btn-normal layui-btn-radius">登录</button>
-      <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" onclick="window.location.href='register.jsp'">注册</button>
+</head>
+<body style="background:url(img/bg.jpg) no-repeat;background-size: 100%">
+
+<div class="layui-form layui-form-pane layui-admin-login">
+    <div class="layui-admin-login-header" style="text-align:center;color:black">
+        <h1>欢迎登陆</h1>
     </div>
-  </body>
+    <br />
+    <br />
+    <br />
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="color:black">
+            <i class="layui-icon layui-icon-username"></i>用户名
+        </label>
+        <div class="layui-input-block">
+            <input required lay-verify="required" id="username" class="layui-input" type="text" placeholder="请输入用户名" autocomplete="off" style="color:black" />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="color:black">
+            <i class="layui-icon layui-icon-password"></i>密码
+        </label>
+        <div class="layui-input-block">
+            <input required lay-verify="required" id="password" class="layui-input" type="password" placeholder="请输入密码" autocomplete="off" style="color:black" />
+        </div>
+    </div>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color:black">
+                选择身份
+            </label>
+            <div class="layui-input-block">
+                <select name="role">
+                    <option value=""></option>
+                    <option value="student">学生</option>
+                    <option value="teacher">教师</option>
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <div class="layui-form-item">
+        <a id="forget_pwd" style="margin-top:10px;float:right;color:#01AAED">忘记密码？</a>
+    </div>
+
+    <div class="layui-form-item" style="text-align: center">
+        <button type="button" id="login" class="layui-btn layui-btn-normal layui-btn-radius" >登录</button>
+        <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" onclick="window.location.href='register.jsp'">注册</button>
+    </div>
+
+
+</div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function() {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+    });
+
+    $(function ()  {
+        $("#login").click(function () {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var role=$("select[name='role']").val();
+            console.log(username);
+            console.log(password);
+            console.log(role);
+            if (!username) {
+                alert("账号必填!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!password) {
+                alert("密码必填!");
+                $("#password").focus();//获取焦点
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "login/userLogin",//请求程序页面
+                async: false,//当有返回值以后才会进行后面的js程序。
+                data: {
+                    "phone":username,
+                    "password":password,
+                    "role":role,
+                },//请求需要发送的处理数据
+                success: function (msg) {
+                    if (msg.flag == "1") {
+                        alert("用户密码错误");
+                    } else if (msg.flag == "2") {
+                        alert("用户不存在");
+                    } else if (msg.flag == "0") {
+                        window.location.href = 'pages/student/studentClass.html';
+                    }
+
+                }
+            });
+        });
+    });
+
+
+
+</script>
+
+
+
+</body>
 </html>
 
 
