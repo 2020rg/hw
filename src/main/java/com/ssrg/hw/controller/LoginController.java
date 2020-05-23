@@ -32,7 +32,7 @@ public class LoginController {
             StudentDto studentDto = studentService.queryStudentByPhone(phone);
             if (studentDto != null) {
                 if (password.equals(studentDto.getPassword())) {
-                    flag = 1;
+                    flag = 0;
                     //登陆成功
                     map.put("studentId", studentDto.getStudentId());
 
