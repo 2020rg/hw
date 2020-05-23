@@ -1,0 +1,40 @@
+html {
+    height: 100%;
+}
+.layui-admin-register-header-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom:solid #101010 1px;
+}
+
+.layui-admin-register-header h1 {
+    color: #1E9FFF;
+    font-family: "Helvetica Neue, Helvetica, PingFang SC, 微软雅黑, Tahoma, Arial, sans-serif";
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.layui-admin-register-header p {
+    color: white;
+    font-family: "Helvetica Neue, Helvetica, PingFang SC, 微软雅黑, Tahoma, Arial, sans-serif";
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+
+.layui-admin-register {
+    width: 30%;
+    margin: 0 auto;
+    position: absolute;
+    top: 20%;
+    left: 34%;
+    /*box-shadow:0 -15px 30px #0d957a;*/
+    border-radius: 10px;
+    padding: 2%;
+    z-index: 1000;
+    background-color: white;
+}
+
+button{
+    text-align: center;
+}
