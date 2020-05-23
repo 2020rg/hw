@@ -33,7 +33,7 @@ public class StudentCourseController {
 
     @RequestMapping("/queryStudentAllCourse")
     public List<CourseDto> queryStudentAllCourse(HttpServletRequest request){
-        int studentId = (int)request.getSession().getAttribute("studentId");
+        int studentId = (int)request.getSession().getAttribute("userId");
         return studentCourseService.queryStudentAllCourse(studentId);
     }
 

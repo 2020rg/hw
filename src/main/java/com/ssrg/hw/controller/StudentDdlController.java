@@ -35,7 +35,7 @@ public class StudentDdlController {
 
     @RequestMapping("/queryDDLByStudentId")
     public List<Map<String,Object>> queryDdlByStudentId(HttpServletRequest request){
-        int studentId = (int)request.getSession().getAttribute("studentId");
+        int studentId = (int)request.getSession().getAttribute("userId");
         List<Map<String,Object>> resultMap = new ArrayList<>();
         List<StudentDdlDto> sd = studentDdlService.queryDdlByStudentId(studentId);
 
