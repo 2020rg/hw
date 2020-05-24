@@ -2,8 +2,10 @@ package com.ssrg.hw.controller;
 
 
 import com.ssrg.hw.dto.CourseDto;
+import com.ssrg.hw.dto.CourseResourceDto;
 import com.ssrg.hw.dto.HomeworkDto;
 import com.ssrg.hw.dto.TeacherDto;
+import com.ssrg.hw.service.ICourseResourceService;
 import com.ssrg.hw.service.ICourseService;
 import com.ssrg.hw.service.IHomeworkService;
 import com.ssrg.hw.service.ITeacherService;
@@ -30,6 +32,8 @@ public class CourseController {
     @Autowired
     private IHomeworkService homeworkService;
 
+    @Autowired
+    private ICourseResourceService courseResourceService;
 
 
     @RequestMapping("/queryCourseByTeacherId")
@@ -43,10 +47,12 @@ public class CourseController {
         Map<String,Object> result = new HashMap<>();
         CourseDto course = courseService.queryCourseByCourseId(courseId);
         TeacherDto teacher = teacherService.queryTeacherByTeacherId(course.getTeacherId());
+        List<CourseResourceDto> resourceList = courseResourceService.queryCourseResourceByCourseId(courseId);
         List<HomeworkDto> homeworkList = homeworkService.queryHomeworkByCourseId(courseId);
         result.put("teacherName",teacher.getName());
         result.put("courseName",course.getCourseName());
         result.put("homeworkList",homeworkList);
+        result.put("resourceList",resourceList);
 
         return result;
     }
