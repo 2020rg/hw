@@ -1,0 +1,229 @@
+<!doctype html>
+<html class="x-admin-sm">
+	<head>
+		<meta charset="UTF-8">
+		<title>使用界面-</title>
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="stylesheet" href="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/css/font.css">
+		<link rel="stylesheet" href="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/css/xadmin.css">
+		<!-- <link rel="stylesheet" href="./css/theme5.css"> -->
+		<script src="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/js/xadmin.js"></script>
+		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+		<!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+		<script>
+			// 是否开启刷新记忆tab功能
+			var is_remember = false;
+		</script>
+	</head>
+	<body class="index">
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo">
+				<a href="index.html">
+					<div class="logo1">
+						<b class="brand" style="font-size: 36px;">HW</b>
+					</div>
+				</a></div>
+
+			<div class="left_open">
+				<a><i title="展开左侧栏" class="layui-icon layui-icon-addition"></i></a>
+			</div>
+
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;">hhorn</a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd>
+							<a onclick="xadmin.open('个人信息','./user/user1.html')">个人信息</a></dd>
+
+						<dd>
+							<a href="../index.jsp">退出</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item to-index">
+					<a href="/">首页</a></li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<!-- 左侧菜单开始 -->
+		<div class="left-nav">
+			<div id="side-nav">
+                <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-app"></i>
+                        <cite>课程管理</cite>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd></dd>
+                        <dd><a onclick="xadmin.add_tab('我的课程','course/course.html',id='main4')">
+                            <!--<i class="iconfont">&#xe6a7;</i>-->
+                            <cite>我的课程</cite></a></a></dd>
+                        <dd><a onclick="xadmin.add_tab('课件管理','course/courseware.html',id='main4')">
+                            <!--<i class="iconfont">&#xe6a7;</i>-->
+                            <cite>课件管理</cite></a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-email"></i>
+                        <cite>通知管理</cite>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a onclick="xadmin.add_tab('课程消息','message/message.html',id='main4')">
+                            <!--<i class="iconfont">&#xe6a7;</i>-->
+                            <cite>课程消息</cite></a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-form"></i>
+                        <cite>作业</cite>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a onclick="xadmin.add_tab('作业管理','homework/homework.html',id='main4')">
+                            <cite>作业管理</cite></a>
+                        </dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a onclick="xadmin.add_tab('作业批改','homework/homework_correct.html',id='main4')">
+                            <cite>作业批改</cite></a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-user"></i>
+                        <cite>讨论区</cite>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a onclick="xadmin.add_tab('讨论区','homework/homework.html',id='main4')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>讨论区</cite></a>
+                        </dd>
+                    </dl>
+                </li>
+                </ul>
+                <!--
+				<ul id="nav">
+					<li>
+						<a href="javascript:;">
+							<i class="layui-icon layui-icon-app" lay-tips="课程管理">&#xe6a2;</i>
+							<cite>课程管理</cite>
+							<i class="iconfont nav_right">&#xe697;</i></a>
+						<ul class="sub-menu">
+							<li>
+								<a onclick="xadmin.add_tab('我的课程','course/course.html',id='main4')">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>我的课程</cite></a>
+							</li>
+							<li>
+								<a onclick="xadmin.add_tab('课件管理','course/courseware.html',id='main4')">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>课件管理</cite></a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="layui-icon layui-icon-email" lay-tips="通知管理">&#xe713;</i>
+							<cite>通知管理</cite>
+							<i class="iconfont nav_right">&#xe697;</i></a>
+						<ul class="sub-menu">
+							<li>
+								<a onclick="xadmin.add_tab('课程消息','message/message.html',id='main4')">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>课程消息</cite></a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="iconfont left-nav-li" lay-tips="作业">&#xe705;</i>
+							<cite>作业</cite>
+							<i class="iconfont nav_right">&#xe697;</i></a>
+						<ul class="sub-menu">
+							<li>
+								<a onclick="xadmin.add_tab('作业管理','homework/homework.html',id='main4')">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>作业管理</cite></a>
+							</li>
+							<li>
+								<a onclick="xadmin.add_tab('作业批改','homework/homework_correct.html',id='main4')">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>作业批改</cite></a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="iconfont left-nav-li" lay-tips="讨论区">&#xe842;</i>
+							<cite>讨论区</cite>
+							<i class="iconfont nav_right">&#xe697;</i></a>
+							<ul class="sub-menu">
+								<li>
+									<a onclick="xadmin.add_tab('讨论区','homework/homework.html',id='main4')">
+										<i class="iconfont">&#xe6a7;</i>
+										<cite>讨论区</cite></a>
+								</li>
+								</ul>
+					</li>
+				</ul>
+                 -->
+			</div>
+		</div>
+		<!-- <div class="x-slide_left"></div> -->
+		<!-- 左侧菜单结束 -->
+		<!-- 右侧主体开始 -->
+		<div class="page-content">
+			<div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+				<ul class="layui-tab-title">
+					<li class="home">
+						<i class="layui-icon">&#xe68e;</i>主页</li>
+				</ul>
+				<div class="layui-unselect layui-form-select layui-form-selected" id="tab_right">
+					<dl>
+						<dd data-type="this">关闭当前</dd>
+						<dd data-type="other">关闭其它</dd>
+						<dd data-type="all">关闭全部</dd>
+					</dl>
+				</div>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show">
+						<iframe src="homepage/teacher_homepage.html" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+					</div>
+				</div>
+				<div id="tab_show"></div>
+			</div>
+		</div>
+		<div class="page-content-bg"></div>
+		<style id="theme_style"></style>
+		<!-- 右侧主体结束 -->
+		<!-- 中部结束 -->
+        <script>
+            layui.use('element', function(){
+                var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+                //监听导航点击
+                element.on('nav(demo)', function(elem){
+                    //console.log(elem)
+                    layer.msg(elem.text());
+                });
+            });
+
+        </script>
+	</body>
+
+</html>

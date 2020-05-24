@@ -2,6 +2,7 @@ package com.ssrg.hw.controller;
 
 
 import com.ssrg.hw.dto.CourseDto;
+import com.ssrg.hw.dto.StudentCourseDto;
 import com.ssrg.hw.dto.StudentDto;
 import com.ssrg.hw.dto.StudentMistakeNoteDto;
 import com.ssrg.hw.service.ICourseService;
@@ -50,12 +51,24 @@ public class StudentCourseController {
     @RequestMapping("/joinCourse")
     public Map<String,Object> joinCourse(@RequestParam("inviteCode") String inviteCode, @RequestParam("studentId") int studentId, HttpServletRequest request){
         Map<String,Object> result = new HashMap<>();
+        int status = 0;
         CourseDto courseDto = courseService.queryCourseByInviteCode(inviteCode);
-        int status = studentCourseService.courseSelection(studentId,courseDto.getCourseId());
+        List<CourseDto> studentCourseDto = studentCourseService.queryStudentAllCourse(studentId);
+
+        //不可重复加入课程
+        for(CourseDto c:studentCourseDto){
+            if(c.getCourseId() == courseDto.getCourseId()){
+                status = -1;
+                result.put("status",status);
+                return result;
+            }
+        }
+
+        status = studentCourseService.courseSelection(studentId,courseDto.getCourseId());
         if(status != 1){
             status = 0;
         }
-        else{
+        else{    //生成相应课程的错题本
             StudentMistakeNoteDto noteDto = new StudentMistakeNoteDto();
             noteDto.setNoteName(courseDto.getCourseName());
             noteDto.setStudentId(studentId);

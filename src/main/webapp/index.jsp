@@ -105,15 +105,17 @@
                     "role":role,
                 },//请求需要发送的处理数据
                 success: function (msg) {
-                    if (msg.flag == "1") {
+                    if (msg.flag == "-1") {
                         alert("用户密码错误");
-                    } else if (msg.flag == "2") {
+                    } else if (msg.flag == "-2") {
                         alert("用户不存在");
                     } else if (msg.flag == "0") {
-                        window.location.href = 'pages/student/studentClass.html';
+                        if (role=="student") window.location.href = 'pages/student/studentClass.html';
+                        else window.location.href='pages/teacher/index.html';
                     }
 
-                }
+                },
+                error:function(xhr){alert(xhr.responseText)}
             });
         });
     });

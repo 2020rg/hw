@@ -26,7 +26,7 @@ public class LoginController {
     @RequestMapping("/userLogin")
     public Map<String, Object> studentLogin(@RequestParam("phone") int phone, @RequestParam("password") String password, @RequestParam("role") String role, HttpServletRequest request){
         Map<String, Object> map = new HashMap<String, Object>();
-        Integer flag = 0;
+        Integer flag = -2;
 
         if(role.equals("student")){
             StudentDto studentDto = studentService.queryStudentByPhone(phone);
