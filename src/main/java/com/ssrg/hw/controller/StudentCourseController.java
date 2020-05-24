@@ -3,8 +3,10 @@ package com.ssrg.hw.controller;
 
 import com.ssrg.hw.dto.CourseDto;
 import com.ssrg.hw.dto.StudentDto;
+import com.ssrg.hw.dto.StudentMistakeNoteDto;
 import com.ssrg.hw.service.ICourseService;
 import com.ssrg.hw.service.IStudentCourseService;
+import com.ssrg.hw.service.IStudentMistakeNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,9 @@ public class StudentCourseController {
 
     @Autowired
     private ICourseService courseService;
+
+    @Autowired
+    private IStudentMistakeNoteService studentMistakeNoteService;
 
     @RequestMapping("/queryCourseAllStudent")
     public List<StudentDto> queryCourseAllStudent(int courseId){
@@ -49,6 +54,12 @@ public class StudentCourseController {
         int status = studentCourseService.courseSelection(studentId,courseDto.getCourseId());
         if(status != 1){
             status = 0;
+        }
+        else{
+            StudentMistakeNoteDto noteDto = new StudentMistakeNoteDto();
+            noteDto.setNoteName(courseDto.getCourseName());
+            noteDto.setStudentId(studentId);
+            studentMistakeNoteService.addStudentMistakeNote(noteDto);
         }
         result.put("status",status);
         return result;

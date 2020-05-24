@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrg.hw.mapper.NoteQuestionMapper">
+
+    <resultMap id="BaseResultMap" type="com.ssrg.hw.dto.NoteQuestionDto">
+        <result column="note_id" property="noteId" jdbcType="INTEGER"/>
+        <result column="question_id" property="questionId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryNQByNoteId" resultMap="BaseResultMap" parameterType="int">
+        select * from note_question where note_id = #{noteId}
+    </select>
+
+    <insert id="addNQ" parameterType="com.ssrg.hw.dto.NoteQuestionDto">
+        insert into note_question(
+        note_id,
+        question_id,
+        content
+        )values (
+        #{noteId},
+        #{questionId},
+        #{content})
+    </insert>
+
+    <update id="updateNQ" parameterType="com.ssrg.hw.dto.NoteQuestionDto">
+        update note_question
+        set
+        content = #{content}
+        where note_id = #{noteId} AND question_id = #{questionId}
+    </update>
+
+    <delete id="deleteNQByNoteId" parameterType="int">
+        delete from note_question where note_id = #{noteId}
+    </delete>
+
+</mapper>

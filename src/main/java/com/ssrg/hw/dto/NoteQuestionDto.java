@@ -4,16 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentMistakeNoteDto {
+public class NoteQuestionDto {
 
     private int noteId;
-    private int studentId;
-    private String noteName;
+    private int questionId;
     private String content;
 
     public int getNoteId() {
@@ -24,12 +21,12 @@ public class StudentMistakeNoteDto {
         this.noteId = noteId;
     }
 
-    public int getStudentId() {
-        return studentId;
+    public int getQuestionId() {
+        return questionId;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 
     public String getContent() {
@@ -39,13 +36,4 @@ public class StudentMistakeNoteDto {
     public void setContent(String content) {
         this.content = content;
     }
-
-    public String getNoteName() {
-        return noteName;
-    }
-
-    public void setNoteName(String noteName) {
-        this.noteName = noteName;
-    }
-
 }

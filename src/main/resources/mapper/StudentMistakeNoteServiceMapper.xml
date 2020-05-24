@@ -27,12 +27,10 @@
 
     <insert id="addStudentMistakeNote" parameterType="com.ssrg.hw.dto.StudentMistakeNoteDto">
         insert into student_mistake_note(
-        note_id,
         student_id,
         note_name,
         content
         )values (
-        #{noteId},
         #{studentId},
         #{noteName},
         #{content})
