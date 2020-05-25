@@ -17,4 +17,6 @@ public interface IStudentHomeworkService {
     int deleteSH(int studentHomeworkId);
 
     int updateSH(StudentHomeworkDto studentHomeworkDto);
+
+    int updateSHSubmit(int studentId, int homeworkId, String submitOK);
 }

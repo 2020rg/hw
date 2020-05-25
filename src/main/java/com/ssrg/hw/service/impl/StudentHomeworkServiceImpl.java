@@ -46,4 +46,9 @@ public class StudentHomeworkServiceImpl implements IStudentHomeworkService {
         StudentHomeworkMapper.updateSH(studentHomeworkDto);
         return 1;
     }
+
+    @Override
+    public int updateSHSubmit(int studentId, int homeworkId, String submitOK){
+        return StudentHomeworkMapper.updateSHSubmit(studentId,homeworkId,submitOK);
+    }
 }

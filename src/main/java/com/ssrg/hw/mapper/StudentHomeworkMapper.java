@@ -3,6 +3,7 @@ package com.ssrg.hw.mapper;
 
 import com.ssrg.hw.dto.StudentHomeworkDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -52,4 +53,13 @@ public interface StudentHomeworkMapper {
      * @return
      */
     int deleteSH(int studentHomeworkId);
+
+    /**
+     * 更新提交状态
+     * @param studentId
+     * @param homeworkId
+     * @param submitOK
+     * @return
+     */
+    int updateSHSubmit(@Param("studentId")int studentId, @Param("homeworkId") int homeworkId,@Param("submitOK") String submitOK);
 }

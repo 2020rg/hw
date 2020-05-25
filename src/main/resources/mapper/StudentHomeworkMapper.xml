@@ -59,6 +59,13 @@
         where student_homework_id = #{studentHomeworkId}
     </update>
 
+    <update id="updateSHSubmit">
+        update student_homework
+        set
+        submit_ok = #{submitOK}
+        where student_id = #{studentId} AND homework_id = #{homeworkId}
+    </update>
+
     <delete id="deleteSH" parameterType="int">
         delete from student_homework where student_homework_id = #{studentHomeworkId}
     </delete>

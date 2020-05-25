@@ -3,13 +3,12 @@ package com.ssrg.hw.controller;
 
 import com.ssrg.hw.dto.QuestionDto;
 import com.ssrg.hw.dto.StudentQuestionDto;
+import com.ssrg.hw.service.IHomeworkService;
 import com.ssrg.hw.service.IQuestionService;
+import com.ssrg.hw.service.IStudentHomeworkService;
 import com.ssrg.hw.service.IStudentQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -26,6 +25,9 @@ public class StudentQuestionController {
 
     @Autowired
     private IQuestionService questionService;
+
+    @Autowired
+    private IStudentHomeworkService studentHomeworkService;
 
     @RequestMapping("/querySubmitOk")
     public Map<String,Object> querySubmitOk(@RequestParam("homeworkId")int homeworkId, HttpServletRequest request){
@@ -96,6 +98,34 @@ public class StudentQuestionController {
         int studentId = (int)request.getSession().getAttribute("userId");
         int flag = StudentQuestionService.submitQuestion(studentId, questionId, answer);
         Map<String,Object> result = new HashMap<>();
+        result.put("flag",flag);
+        return result;
+    }
+
+    @RequestMapping("/submitAllQuestion")
+    public Map<String,Object> submitAllQuestion(@RequestBody Map sq,
+                                                HttpServletRequest request){
+        int studentId = (int)request.getSession().getAttribute("userId");
+        int homeworkId = (int) sq.get("homeworkID");
+        Map<String,Object> result = new HashMap<>();
+        List<QuestionDto> question = questionService.queryQuestionByHomeworkId(homeworkId);
+        List<String> questionS = new ArrayList<>();
+
+        for(QuestionDto q:question){
+            q.getQuestionId();
+            questionS.add(String.valueOf(q.getQuestionId()));
+        }
+
+        int flag = 0;
+
+        for(String q:questionS){
+            flag = StudentQuestionService.submitQuestion(studentId,Integer.parseInt(q),sq.get(q).toString());
+            if(flag == 0){
+                result.put("flag",flag);
+                return result;
+            }
+        }
+        studentHomeworkService.updateSHSubmit(studentId,homeworkId,"true");
         result.put("flag",flag);
         return result;
     }
