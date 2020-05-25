@@ -28,13 +28,11 @@
 
     <insert id="addCourseResource" parameterType="com.ssrg.hw.dto.CourseResourceDto">
         insert into course_resource(
-        resource_id,
         course_id,
         upload_time,
         resource_name,
         resource_filepath
         )values (
-        #{resourceId},
         #{courseId},
         #{uploadTime},
         #{resourceName},

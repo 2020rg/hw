@@ -1,66 +1,166 @@
 package com.ssrg.hw.controller;
 
+import com.ssrg.hw.dto.CourseDto;
 import com.ssrg.hw.dto.CourseResourceDto;
 import com.ssrg.hw.service.ICourseResourceService;
+import com.ssrg.hw.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
+@RequestMapping("/resource")
 public class CourseResourceController {
 
     @Autowired
     private ICourseResourceService courseResourceService;
 
-    @GetMapping("/queryCourseResourceList")
-    public List<CourseResourceDto> queryCourseResourceList()
-    {
-        List<CourseResourceDto> courseResourceList=courseResourceService.queryCourseResourceList();
-        return courseResourceList;
-    }
+    @Autowired
+    private ICourseService courseService;
 
-    @GetMapping("/queryCourseResourceByCourseId")
+    @RequestMapping("/queryCourseResourceByCourseId")
     public List<CourseResourceDto> queryCourseResourceByCourseId(int courseId)
     {
         List<CourseResourceDto> courseResourceList=courseResourceService.queryCourseResourceByCourseId(courseId);
         return courseResourceList;
     }
 
-    @GetMapping("/queryCourseResourceByResourceName")
-    public List<CourseResourceDto> queryCourseResourceByResourceName(String resourceName)
-    {
-        List<CourseResourceDto> courseResourceList=courseResourceService.queryCourseResourceByResourceName(resourceName);
-        return courseResourceList;
-    }
 
-    @GetMapping("/queryCourseResourceByResourceId")
+    @RequestMapping("/queryCourseResourceByResourceId")
     public CourseResourceDto queryCourseResourceByResourceId(int resourceId)
     {
         CourseResourceDto courseResourceDto=courseResourceService.queryCourseResourceByResourceId(resourceId);
         return courseResourceDto;
     }
 
-    @GetMapping("/addCourseResource")
-    public int addCourseResource(CourseResourceDto courseResourceDto)
+    @RequestMapping("/addCourseResource")
+    public Map<String,Object> addCourseResource(@RequestParam("courseID") int courseId,
+                                 @RequestParam("resourceName") String resourceName,
+                                 @RequestParam("resourceFilepath") String resourceFilepath)
     {
-        courseResourceService.addCourseResource(courseResourceDto);
-        return 1;
+        Map<String,Object> map = new HashMap<>();
+        int flag;
+        CourseDto courseDto = courseService.queryCourseByCourseId(courseId);
+        if(courseDto == null){
+            flag = 0;
+            map.put("flag",flag);
+            return map;
+        }
+
+        CourseResourceDto courseResourceDto = new CourseResourceDto();
+        courseResourceDto.setCourseId(courseId);
+        courseResourceDto.setResourceName(resourceName);
+        courseResourceDto.setResourceFilepath(resourceFilepath);
+        flag = courseResourceService.addCourseResource(courseResourceDto);
+        map.put("flag",flag);
+        return map;
     }
 
-    @GetMapping("/updateCourseResource")
+    @RequestMapping("/updateCourseResource")
     public int updateCourseResource(CourseResourceDto courseResourceDto)
     {
         courseResourceService.updateCourseResource(courseResourceDto);
         return 1;
     }
 
-    @GetMapping("/deleteCourseResource")
-    public int deleteCourseResource(int resourceId)
+    @RequestMapping("/deleteCourseResource")
+    public Map<String,Object> deleteCourseResource(@RequestParam("resourceID") int resourceId)
     {
-        courseResourceService.deleteCourseResource(resourceId);
-        return 1;
+        Map<String,Object> result = new HashMap<>();
+        int flag = 0;
+        flag = courseResourceService.deleteCourseResource(resourceId);
+        result.put("flag",flag);
+        return result;
     }
 
+    @RequestMapping("/fileUpload")
+    @ResponseBody
+    public Map<String,Object> fileUpload(MultipartFile file){
+        Map<String,Object> result = new HashMap<>();
+        int flag = 0;
+
+        if(file.isEmpty()){
+            flag = 0;
+            result.put("flag",flag);
+            return result;
+        }
+        String fileName = file.getOriginalFilename();
+
+        String path = "E:/resource/course" ;
+        File dest = new File(path + "/" + fileName);
+        if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
+            dest.getParentFile().mkdir();
+        }
+        try {
+            file.transferTo(dest); //保存文件
+            flag = 1;
+            result.put("flag",flag);
+            return result;
+        } catch (IllegalStateException e) {
+            // TODO Auto-generated catch block
+            flag = 0;
+            result.put("flag",flag);
+            e.printStackTrace();
+            return result;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            flag = 0;
+            result.put("flag",flag);
+            e.printStackTrace();
+            return result;
+        }
+    }
+
+    @RequestMapping("/download")
+    public Map<String,Object> downLoad(@RequestParam("resourceID")int resourceId, HttpServletResponse response) throws UnsupportedEncodingException {
+        Map<String,Object> result = new HashMap<>();
+        int flag = 1;
+        CourseResourceDto r = courseResourceService.queryCourseResourceByResourceId(resourceId);
+        String filename = r.getResourceFilepath();
+
+        String filePath = "E:/resource/course" ;
+        File file = new File(filePath + "/" + filename);
+        if(file.exists()){ //判断文件父目录是否存在
+            response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            // response.setContentType("application/force-download");
+            response.setHeader("Content-Disposition", "attachment;fileName=" +   java.net.URLEncoder.encode(filename,"UTF-8"));
+            byte[] buffer = new byte[1024];
+            FileInputStream fis = null; //文件输入流
+            BufferedInputStream bis = null;
+
+            OutputStream os = null; //输出流
+            try {
+                os = response.getOutputStream();
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+                int i = bis.read(buffer);
+                while(i != -1){
+                    os.write(buffer);
+                    i = bis.read(buffer);
+                }
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                flag = 0;
+                e.printStackTrace();
+            }
+            try {
+                bis.close();
+                fis.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                flag = 0;
+                e.printStackTrace();
+            }
+        }
+        result.put("flag",flag);
+        return result;
+    }
 }

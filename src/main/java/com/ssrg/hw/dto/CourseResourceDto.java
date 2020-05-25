@@ -17,5 +17,45 @@ public class CourseResourceDto {
     private Date uploadTime;
     private String resourceName;
     private String resourceFilepath;
+
+    public int getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public Date getUploadTime() {
+        return uploadTime;
+    }
+
+    public void setUploadTime(Date uploadTime) {
+        this.uploadTime = uploadTime;
+    }
+
+    public String getResourceFilepath() {
+        return resourceFilepath;
+    }
+
+    public void setResourceFilepath(String resourceFilepath) {
+        this.resourceFilepath = resourceFilepath;
+    }
+
+    public String getResourceName() {
+        return resourceName;
+    }
+
+    public void setResourceName(String resourceName) {
+        this.resourceName = resourceName;
+    }
 }
 

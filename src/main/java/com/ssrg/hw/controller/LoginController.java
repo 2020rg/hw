@@ -79,11 +79,44 @@ public class LoginController {
 
     @RequestMapping("/signup")
     public Map<String,Object> signup(
+            @RequestParam("username") String name,
+            @RequestParam("cellphone") int phone,
+            @RequestParam("password") String password,
+            @RequestParam("role") String role,
             HttpServletRequest request
     ){
         Map<String,Object> result = new HashMap<>();
+        int flag = 0;
+        if(role.equals("student")){
+            if(studentService.queryStudentByPhone(phone) == null){
+                StudentDto studentDto = new StudentDto();
+                studentDto.setName(name);
+                studentDto.setPhone(phone);
+                studentDto.setPassword(password);
+                studentService.addStudent(studentDto);
+            }
+            else{
+                flag = -1;   //手机号已被使用
+                result.put("flag",flag);
+                return result;
+            }
+        }
+        else if(role.equals("teacher")){
+            if(teacherService.queryTeacherByPhone(phone) == null){
+                TeacherDto teacherDto = new TeacherDto();
+                teacherDto.setName(name);
+                teacherDto.setPhone(phone);
+                teacherDto.setPassword(password);
+                teacherService.addTeacher(teacherDto);
+            }
+            else{
+                flag = -1;   //手机号已被使用
+                result.put("flag",flag);
+                return result;
+            }
+        }
 
-
+        result.put("flag",flag);
         return result;
     }
 }

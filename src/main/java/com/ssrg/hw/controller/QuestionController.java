@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class QuestionController {
     private IQuestionService questionService;
 
     @RequestMapping("/queryQuestionByHomeworkId")
-    public List<QuestionDto> queryQuestionByHomeworkId(@RequestParam("homeworkID") int homeworkId){
+    public List<QuestionDto> queryQuestionByHomeworkId(@RequestParam("homeworkID") int homeworkId, HttpServletRequest request){
         return questionService.queryQuestionByHomeworkId(homeworkId);
     }
 
