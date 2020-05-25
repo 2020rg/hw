@@ -8,16 +8,16 @@
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
 		<link rel="stylesheet" href="https://at.alicdn.com/t/font_1145291_0tjk7hg6hxop.css">
 		<link rel="stylesheet" href="http://x.xuebingsi.com/static/x/css/store.css?t=" charset="utf-8">
-		<link rel="stylesheet" href="../../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/layui/css/layui.css">
+		<link rel="stylesheet" href="../../../layui/css/layui.css">
 		<link rel="stylesheet" href="http://x.xuebingsi.com/static/x/css/global2.css?t=" charset="utf-8">
-		<link rel="stylesheet" href="../../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/css/g1.css" charset="utf-8">
-		<link rel="stylesheet" href="../../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/css/font.css">
-		<link rel="stylesheet" href="../../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/css/xadmin.css">
+		<link rel="stylesheet" href="../../../css/g1.css" charset="utf-8">
+		<link rel="stylesheet" href="../../../css/font.css">
+		<link rel="stylesheet" href="../../../css/xadmin.css">
 
 		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-		<script src="../../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/layui/layui.js"></script>
+		<script src="../../../layui/layui.js"></script>
 		<script src="http://x.xuebingsi.com/static/x/js/main.js"></script>
-		<script type="text/javascript" src="../../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/js/xadmin.js"></script>
+		<script type="text/javascript" src="../../../js/xadmin.js"></script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -44,7 +44,7 @@
 
 							<div>
 								<blockquote class="layui-elem-quote">欢迎使用者：
-									<span class="x-red">王老师</span>！当前时间:
+									<span class="x-red" name="userID"></span>！当前时间:
 									<script>
 										var d = new Date();
 										document.write(d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日");
@@ -62,7 +62,7 @@
 			<div class="layui-card">
 				<div class="fly-home fly-panel" style="background-image: url();"><img src="http://thirdwx.qlogo.cn/mmopen/iaTz8U0mW2gcp8PgJjeibGG8hFgmnUmn8iczlLiaSv1EZicibYA1bVbmicYx610zctklPHPrComHrMcxsNLMDsXJMkFAPYTpGibL5CbT/132"
 					 alt="王老师">
-					<h1>王老师</h1>
+					<h1 name="userID"></h1>
 					<p class="fly-home-info"><span style="color: #FF7200;">邮箱：</span>
 						<span>1213456789@163.com </span>
 						<i class="iconfont icon-chengshi"></i>
@@ -136,6 +136,19 @@
 			
 	</div>	
 	</div>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url:"/session/getSession",
+                type:"POST",
+                async:false,
+                success:function(result){
+                   console.log(result);
+                }
+            })
+        })
+    </script>
 
 	</body>
 

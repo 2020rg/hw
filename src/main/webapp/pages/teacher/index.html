@@ -7,11 +7,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
 		<meta http-equiv="Cache-Control" content="no-siteapp" />
-		<link rel="stylesheet" href="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/css/font.css">
-		<link rel="stylesheet" href="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/css/xadmin.css">
+		<link rel="stylesheet" href="../../css/font.css">
+		<link rel="stylesheet" href="../../css/xadmin.css">
 		<!-- <link rel="stylesheet" href="./css/theme5.css"> -->
-		<script src="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/layui/layui.js" charset="utf-8"></script>
-		<script type="text/javascript" src="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/js/xadmin.js"></script>
+		<script src="../../layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/xadmin.js"></script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -26,7 +26,7 @@
 		<!-- 顶部开始 -->
 		<div class="container">
 			<div class="logo">
-				<a href="index.html">
+				<a href="./index.html">
 					<div class="logo1">
 						<b class="brand" style="font-size: 36px;">HW</b>
 					</div>
@@ -65,10 +65,10 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd></dd>
-                        <dd><a onclick="xadmin.add_tab('我的课程','course/course.html',id='main4')">
+                        <dd><a onclick="xadmin.add_tab('我的课程','./course/course.html',id='main4')">
                             <!--<i class="iconfont">&#xe6a7;</i>-->
                             <cite>我的课程</cite></a></a></dd>
-                        <dd><a onclick="xadmin.add_tab('课件管理','course/courseware.html',id='main4')">
+                        <dd><a onclick="xadmin.add_tab('课件管理','./course/courseware.html',id='main4')">
                             <!--<i class="iconfont">&#xe6a7;</i>-->
                             <cite>课件管理</cite></a></dd>
                     </dl>
@@ -79,7 +79,7 @@
                         <cite>通知管理</cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a onclick="xadmin.add_tab('课程消息','message/message.html',id='main4')">
+                        <dd><a onclick="xadmin.add_tab('课程消息','./message/message.html',id='main4')">
                             <!--<i class="iconfont">&#xe6a7;</i>-->
                             <cite>课程消息</cite></a>
                         </dd>
@@ -91,12 +91,12 @@
                         <cite>作业</cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a onclick="xadmin.add_tab('作业管理','homework/homework.html',id='main4')">
+                        <dd><a onclick="xadmin.add_tab('作业管理','./homework/homework.html',id='main4')">
                             <cite>作业管理</cite></a>
                         </dd>
                     </dl>
                     <dl class="layui-nav-child">
-                        <dd><a onclick="xadmin.add_tab('作业批改','homework/homework_correct.html',id='main4')">
+                        <dd><a onclick="xadmin.add_tab('作业批改','./homework/homework_correct.html',id='main4')">
                             <cite>作业批改</cite></a>
                         </dd>
                     </dl>
@@ -107,7 +107,7 @@
                         <cite>讨论区</cite>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a onclick="xadmin.add_tab('讨论区','homework/homework.html',id='main4')">
+                        <dd><a onclick="xadmin.add_tab('讨论区','./homework/homework.html',id='main4')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>讨论区</cite></a>
                         </dd>
@@ -202,7 +202,7 @@
 				</div>
 				<div class="layui-tab-content">
 					<div class="layui-tab-item layui-show">
-						<iframe src="homepage/teacher_homepage.html" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+						<iframe src="./homepage/teacher_homepage.html" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
 					</div>
 				</div>
 				<div id="tab_show"></div>
