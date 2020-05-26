@@ -48,5 +48,17 @@
         delete from homework where course_id = #{courseId}
     </delete>
 
+    <insert id="publishHomework">
+        insert into homework(
+        course_id,
+        title,
+        introduce,
+        ddl
+        )values (
+        #{courseId},
+        #{title},
+        #{introduce},
+        #{ddl})
+    </insert>
 
 </mapper>

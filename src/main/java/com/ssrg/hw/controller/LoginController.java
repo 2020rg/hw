@@ -38,6 +38,13 @@ public class LoginController {
             StudentDto studentDto = studentService.queryStudentByPhone(phone);
             if (studentDto != null) {
                 if (password.equals(studentDto.getPassword())) {
+                    /*
+                    if((int)request.getSession().getAttribute("userId") == studentDto.getStudentId()){
+                        flag = -3;   //重复登录
+                        map.put("flag",flag);
+                        return map;
+                    }
+*/
                     flag = 0;
                     //登陆成功
                     map.put("studentId", studentDto.getStudentId());
@@ -61,6 +68,13 @@ public class LoginController {
             TeacherDto teacherDto = teacherService.queryTeacherByPhone(phone);
             if(teacherDto != null){
                 if(password.equals(teacherDto.getPassword())){
+                    /*
+                    if((int)request.getSession().getAttribute("userId") == teacherDto.getTeacherId()){
+                        flag = -3;   //重复登录
+                        map.put("flag",flag);
+                        return map;
+                    }
+                    */
                     flag = 0;
                     map.put("teacherId",teacherDto.getTeacherId());
 

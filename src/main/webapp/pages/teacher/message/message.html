@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="../../../css/xadmin.css">
 		<!-- <link rel="stylesheet" href="./css/theme5.css"> -->
 		<script src="../../../layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../../../js/jquery.js"></script>
 		<script type="text/javascript" src="../../../js/xadmin.js"></script>
 		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 		<!--[if lt IE 9]>
@@ -79,12 +80,11 @@
 						<div class="layui-col-md12">
 							<div class="layui-col-md12">
 								<div class="layui-card">
-									<div class="layui-card-header">TA的课程</div>
+									<div class="layui-card-header">我的课程</div>
 									<div class="layui-card-body ">
-										<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
-											<li class="layui-col-md2 layui-col-xs">
+										<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog" id="course">
+											<!--<li class="layui-col-md2 layui-col-xs">
 												<a href="javascript:;" class="x-admin-backlog-body">
-
 													<p><cite>《软件工程》3-4班</cite></p>
 													<p class="fly-home-info"><span>作业1 </span></p>
 													<p class="fly-home-info"><span>作业介绍 </span></p>
@@ -93,7 +93,6 @@
 											</li>
 											<li class="layui-col-md2 layui-col-xs">
 												<a href="javascript:;" class="x-admin-backlog-body">
-											
 													<p><cite>《软件工程》1-2班</cite></p>
 													<p class="fly-home-info"><span>作业1 </span></p>
 													<p class="fly-home-info"><span>作业介绍 </span></p>
@@ -109,7 +108,7 @@
 													<p class="fly-home-info"><span>发布时间：2020/1/1 </span></p>
 												</a>
 											</li>
-											
+											-->
 											
 										</ul>
 									</div>
@@ -137,6 +136,32 @@
 
 
 	<script>
+		$(document).ready(function(){
+			$.ajax({
+				url:"/course/queryCourseByTeacherId",
+				type:"POST",
+				dataType:"JSON",
+				success:function(result) {
+					var arr = result.courseList;//如果前方代码取值不称就用这个：jQuery.parseJSON(data).replies；
+					for (var i = 0; i < result.courseList.length; i++) {
+						var courseName = arr[i].courseName;
+						var teacherName = arr[i].teacherName;
+						var studentNum = arr[i].studentNum;
+						console.log(result.courseName);
+						console.log(result.teacherName);
+						console.log(result.studentNum);
+						$('#course').append(
+								"<li class='layui-col-md2 layui-col-xs'><a href='javascript:;' class='x-admin-backlog-body'><p><cite>"
+								+courseName+
+								"</cite></p><p class='fly-home-info'><span>"
+								+teacherName+
+								"</span></p><p class='fly-home-info'><span>"
+								+"学生人数"+studentNum+"</span></p></a></li>");
+					}
+				}
+			})
+		});
+
 		layui.use(['laydate', 'form'],
 			function() {
 				var laydate = layui.laydate;
@@ -152,7 +177,6 @@
 				});
 			});
 
-
 		/*用户-删除*/
 		function member_del() {
 			layer.confirm('确认要删除吗？',
@@ -165,10 +189,6 @@
 					});
 				});
 		}
-
-
-
-
 
 		function delAll() {
 			var ids = [];
@@ -188,6 +208,8 @@
 				$(".layui-form-checked").not('.header').parents('tr').remove();
 			});
 		}
+
+
 	</script>
 
 

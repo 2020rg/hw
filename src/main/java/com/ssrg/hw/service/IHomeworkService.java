@@ -2,6 +2,7 @@ package com.ssrg.hw.service;
 
 import com.ssrg.hw.dto.HomeworkDto;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface IHomeworkService {
@@ -18,4 +19,6 @@ public interface IHomeworkService {
     int deleteHomeworkByCourseId(int courseId);
 
     int updateHomework(HomeworkDto homeworkDto);
+
+    int publishHomework(int teacherId,int courseId, String title,String introduce, Timestamp ddl);
 }

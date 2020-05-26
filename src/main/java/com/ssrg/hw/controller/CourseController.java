@@ -1,20 +1,16 @@
 package com.ssrg.hw.controller;
 
 
-import com.ssrg.hw.dto.CourseDto;
-import com.ssrg.hw.dto.CourseResourceDto;
-import com.ssrg.hw.dto.HomeworkDto;
-import com.ssrg.hw.dto.TeacherDto;
-import com.ssrg.hw.service.ICourseResourceService;
-import com.ssrg.hw.service.ICourseService;
-import com.ssrg.hw.service.IHomeworkService;
-import com.ssrg.hw.service.ITeacherService;
+import com.ssrg.hw.dto.*;
+import com.ssrg.hw.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,11 +31,37 @@ public class CourseController {
     @Autowired
     private ICourseResourceService courseResourceService;
 
+    @Autowired
+    private IStudentCourseService studentCourseService;
+
 
     @RequestMapping("/queryCourseByTeacherId")
-    public List<CourseDto> queryCourseByTeacherId(int teacherId){
-        List<CourseDto> courseList = courseService.queryCourseByTeacherId(teacherId);
-        return courseList;
+    public Map<String,Object> queryCourseByTeacherId(HttpServletRequest request){
+        int teacherId = (int)request.getSession().getAttribute("userId");
+        Map<String,Object> result = new HashMap<>();
+        List<Map<String,Object>> courseList = new ArrayList<>();
+
+        int StudentNum = 0;
+
+        List<CourseDto> tcourseList = courseService.queryCourseByTeacherId(teacherId);
+        CourseDto courseDto;
+
+        for (CourseDto c: tcourseList) {
+            List<StudentDto> studentList = studentCourseService.queryCourseAllStudent(c.getCourseId());
+            Map<String,Object> course = new HashMap<>();
+            courseDto = courseService.queryCourseByCourseId(c.getCourseId());
+            StudentNum = studentList.size();
+
+            course.put("courseName",courseDto.getCourseName());
+            course.put("teacherName",teacherService.queryTeacherByTeacherId(teacherId).getName());
+            course.put("studentNum",StudentNum);
+
+            courseList.add(course);
+        }
+
+        result.put("courseList",courseList);
+
+        return result;
     }
 
     @RequestMapping("/queryCourseByCourseId")

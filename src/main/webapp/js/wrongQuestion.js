@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
 
     var courseId=GetQueryString("courseId");
@@ -57,7 +58,7 @@ $(document).ready(function(){
                 })
             }
         });
-        /*$.post("", pageConf, function (data) {
+        /!*$.post("", pageConf, function (data) {
             alert("post函数");
             layui.use('laypage', function () {
                 data={"noteName":3333,"noteContent":2222};
@@ -82,7 +83,7 @@ $(document).ready(function(){
                 });
                 fillTable(data, (pageConf.currentPage - 1) * pageConf.pageSize); //页面填充
             })
-        });*/
+        });*!/
     }
 
 
@@ -126,7 +127,7 @@ $(document).ready(function(){
         });
     }
 
-    /*layui.use('laypage', function(){
+    /!*layui.use('laypage', function(){
         var laypage = layui.laypage;
 
         //这里需要数据渲染时动态添加
@@ -143,21 +144,21 @@ $(document).ready(function(){
 
             }
         });
-    });*/
+    });*!/
 
 
 
-    /*$("#btnUpload").click(function(){
+    /!*$("#btnUpload").click(function(){
         console.log("上传文件");
 
     })
     $("btnHandin").click(function(){
         console.log("提交作业内容");
-    })*/
+    })*!/
 
 });
 
-/*
+/!*
 $.ajax({
     url:"",
     async:false,
@@ -198,4 +199,98 @@ $.ajax({
     error:function(){
         console.log("网络错误，通信失败");
     }
-})*/
+})*!/
+*/
+
+
+$(document).ready(function(){
+
+
+
+    var strmsg = decodeURIComponent(location.search.slice(1).split("=")[1]);
+    var msg = JSON.parse(strmsg);
+    var bookid=msg.noteBookId;
+
+    console.log("本页面错题本的id是:" + bookid);
+    console.log(bookid);
+    $.ajax({
+        type:"POST",
+        url:"http://localhost:8080/note/getANoteContent",
+        async:false,
+        data:{noteId:bookid},
+        success:function (msg) {
+            console.log(JSON.stringify(msg));
+            initialPage(msg.note);
+        },
+        error:function () {
+            alert("获取错题本数据失败");
+        }
+    });
+
+    // function  GetQueryString(name) {
+    //     //     //构造一个含有目标参数的正则表达式对象
+    //     //     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    //     //     //匹配目标参数
+    //     //     var r = window.location.search.substr(1).match(reg);
+    //     //     //返回参数值
+    //     //     if (r != null) return unescape(r[2]);
+    //     //     //不存在时返回null
+    //     //     return null;
+    //     // }
+
+    //initLayPage();
+
+
+});
+
+function initialPage(Note){
+
+    layui.use('laypage', function () {
+        var laypage = layui.laypage;
+
+        console.log("渲染分页");
+        //这里需要数据渲染时动态添加
+
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'notespage', //注意，这里的 test1 是 ID，不用加 # 号
+            count: Note.length, //数据总数，从服务端得到
+            limit: 1,
+            pre: "上一题",
+            next: "下一题",
+            curr: location.hash.replace('#!index=', ''),//获取hash值为fenye的当前页
+            hash: 'index',//自定义hash值
+            jump: function (obj) {
+                console.log(obj.curr);
+                var i = obj.curr - 1;
+                var addhtml = fillContent(Note[i], i + 1);
+                $("#qContainer").html(addhtml);
+            }
+        });
+
+    });
+
+}
+
+function fillContent(onenote, index){
+    console.log("填充一份数据");
+    return "<div class=\"left-content\">\n" +
+        "<h2>题目" + index + "</h2>\n" +
+        "<br>\n" +
+        "<p>" + onenote.questionContent + "</p>\n" +
+        "</div>\n" +
+        "<div class=\"right-content\">\n" +
+        "<h2><i class=\"layui-icon layui-icon-edit\"></i>我的答案</h2> \n" +
+        "<br>\n" +
+        "<br>" +
+        "<p>" + onenote.answer + "<\p>" +
+        "<br>" +
+        "<br>" +
+        "<br>" +
+        "<h2>错题笔记</h2>" +
+        "<br>" +
+        "<br>" +
+        "<p>" + onenote.content + "</p>" +
+        "</div>\n";
+}
+

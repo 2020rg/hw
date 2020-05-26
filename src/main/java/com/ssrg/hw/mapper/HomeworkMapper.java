@@ -2,8 +2,10 @@ package com.ssrg.hw.mapper;
 
 import com.ssrg.hw.dto.HomeworkDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -51,4 +53,16 @@ public interface HomeworkMapper {
      * @return
      */
     int updateHomework(HomeworkDto homeworkDto);
+
+    /**
+     * 发布作业
+     * @param courseId
+     * @param title
+     * @param introduce
+     * @param ddl
+     * @return
+     */
+    int publishHomework(@Param("teacherId") int teacherId,
+                        @Param("courseId") int courseId, @Param("title") String title,
+                        @Param("introduce") String introduce, @Param("ddl") Timestamp ddl);
 }

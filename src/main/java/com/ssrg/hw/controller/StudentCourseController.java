@@ -1,13 +1,8 @@
 package com.ssrg.hw.controller;
 
 
-import com.ssrg.hw.dto.CourseDto;
-import com.ssrg.hw.dto.StudentCourseDto;
-import com.ssrg.hw.dto.StudentDto;
-import com.ssrg.hw.dto.StudentMistakeNoteDto;
-import com.ssrg.hw.service.ICourseService;
-import com.ssrg.hw.service.IStudentCourseService;
-import com.ssrg.hw.service.IStudentMistakeNoteService;
+import com.ssrg.hw.dto.*;
+import com.ssrg.hw.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +25,12 @@ public class StudentCourseController {
     private ICourseService courseService;
 
     @Autowired
+    private IStudentHomeworkService studentHomeworkService;
+
+    @Autowired
+    private IHomeworkService homeworkService;
+
+    @Autowired
     private IStudentMistakeNoteService studentMistakeNoteService;
 
     @RequestMapping("/queryCourseAllStudent")
@@ -43,17 +44,13 @@ public class StudentCourseController {
         return studentCourseService.queryStudentAllCourse(studentId);
     }
 
-    @RequestMapping("/courseSelection")
-    public int courseSelection(int studentId,int courseId){
-        return studentCourseService.courseSelection(studentId,courseId);
-    }
-
     @RequestMapping("/joinCourse")
     public Map<String,Object> joinCourse(@RequestParam("inviteCode") String inviteCode, @RequestParam("studentId") int studentId, HttpServletRequest request){
         Map<String,Object> result = new HashMap<>();
         int status = 0;
         CourseDto courseDto = courseService.queryCourseByInviteCode(inviteCode);
         List<CourseDto> studentCourseDto = studentCourseService.queryStudentAllCourse(studentId);
+        List<HomeworkDto> homeworkDtos = homeworkService.queryHomeworkByCourseId(courseDto.getCourseId());
 
         //不可重复加入课程
         for(CourseDto c:studentCourseDto){
@@ -68,11 +65,19 @@ public class StudentCourseController {
         if(status != 1){
             status = 0;
         }
-        else{    //生成相应课程的错题本
+        else{    //生成相应课程的错题本  添加学生作业
             StudentMistakeNoteDto noteDto = new StudentMistakeNoteDto();
             noteDto.setNoteName(courseDto.getCourseName());
             noteDto.setStudentId(studentId);
             studentMistakeNoteService.addStudentMistakeNote(noteDto);
+
+            for(HomeworkDto h:homeworkDtos){
+                StudentHomeworkDto studentHomeworkDto = new StudentHomeworkDto();
+                studentHomeworkDto.setHomeworkId(h.getHomeworkId());
+                studentHomeworkDto.setStudentId(studentId);
+                studentHomeworkService.addSH(studentHomeworkDto);
+            }
+
         }
         result.put("status",status);
         return result;

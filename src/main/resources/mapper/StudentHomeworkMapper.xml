@@ -27,23 +27,11 @@
 
     <insert id="addSH" parameterType="com.ssrg.hw.dto.StudentHomeworkDto">
         insert into student_homework(
-        student_homework_id,
         student_id,
-        homework_id,
-        submit_time,
-        score,
-        file,
-        answer,
-        submit_ok
+        homework_id
         )values (
-        #{studentHomeworkId},
         #{studentId},
-        #{homeworkId},
-        #{submitTime},
-        #{score},
-        #{file},
-        #{answer},
-        #{submitOK})
+        #{homeworkId})
     </insert>
 
     <update id="updateSH" parameterType="com.ssrg.hw.dto.StudentHomeworkDto">

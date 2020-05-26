@@ -6,6 +6,7 @@ import com.ssrg.hw.service.IHomeworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -46,5 +47,10 @@ public class HomeworkServiceImpl implements IHomeworkService {
     public int updateHomework(HomeworkDto homeworkDto){
         homeworkMapper.updateHomework(homeworkDto);
         return 1;
+    }
+
+    @Override
+    public int publishHomework(int teacherId, int courseId, String title, String introduce, Timestamp ddl){
+        return homeworkMapper.publishHomework(teacherId, courseId, title, introduce, ddl);
     }
 }

@@ -62,7 +62,7 @@ function initialPage(datas) {
             "<li class=\"layui-col-md layui-col-xs\">" +
             "<a href=\"javascript:;\" class=\"x-admin-backlog-body\">" +
             "<p><cite>" + datas.SubmitOkCheckedList[i].courseName +
-            " " + datas.SubmitOkCheckedList[i].studentId +
+            //" " + datas.SubmitOkCheckedList[i].studentId +
             " " + datas.SubmitOkCheckedList[i].studentName + "</cite></p>" +
             "<p class=\"fly-home-info\"><span>" + datas.SubmitOkCheckedList[i].homeworkID + "</cite></p>" +
             "<p class=\"fly-home-info\"><span>" + datas.SubmitOkCheckedList[i].homeworkIntroduce + "</cite></p>" +
@@ -81,7 +81,7 @@ function initialPage(datas) {
             "<li class=\"layui-col-md layui-col-xs\">" +
             "<a href=\"javascript:;\" class=\"x-admin-backlog-body\">" +
             "<p><cite>" + datas.SubmitOkNotCheckList[i].courseName +
-            " " + datas.SubmitOkNotCheckList[i].studentId +
+            //" " + datas.SubmitOkNotCheckList[i].studentId +
             " " + datas.SubmitOkNotCheckList[i].studentName + "</cite></p>" +
             "<p class=\"fly-home-info\"><span>" + datas.SubmitOkNotCheckList[i].homeworkID + "</cite></p>" +
             "<p class=\"fly-home-info\"><span>" + datas.SubmitOkNotCheckList[i].homeworkIntroduce + "</cite></p>" +
@@ -99,7 +99,7 @@ function initialPage(datas) {
             "<li class=\"layui-col-md layui-col-xs\">" +
             "<a href=\"javascript:;\" class=\"x-admin-backlog-body\">" +
             "<p><cite>" + datas.SubmitOkCheckedList[i].courseName +
-            " " + datas.SubmitOkCheckedList[i].studentId +
+            //" " + datas.SubmitOkCheckedList[i].studentId +
             " " + datas.SubmitOkCheckedList[i].studentName + "</cite></p>" +
             "<p class=\"fly-home-info\"><span>" + datas.SubmitOkCheckedList[i].homeworkID + "</cite></p>" +
             "<p class=\"fly-home-info\"><span>" + datas.SubmitOkCheckedList[i].homeworkIntroduce + "</cite></p>" +
