@@ -28,6 +28,12 @@ public class LoginController {
         Map<String, Object> map = new HashMap<String, Object>();
         Integer flag = -2;
 
+        if(request.getSession().getAttribute("userId") != null){
+            flag = -3;   //重复登录
+            map.put("flag",flag);
+            return map;
+        }
+
         if(role.equals("student")){
             StudentDto studentDto = studentService.queryStudentByPhone(phone);
             if (studentDto != null) {

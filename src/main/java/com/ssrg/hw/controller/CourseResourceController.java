@@ -81,7 +81,7 @@ public class CourseResourceController {
 
     @RequestMapping("/fileUpload")
     @ResponseBody
-    public Map<String,Object> fileUpload(MultipartFile file){
+    public Map<String,Object> fileUpload(@RequestParam("file")MultipartFile file, @RequestParam("courseID") int courseId){
         Map<String,Object> result = new HashMap<>();
         int flag = 0;
 
@@ -92,7 +92,7 @@ public class CourseResourceController {
         }
         String fileName = file.getOriginalFilename();
 
-        String path = "E:/resource/course" ;
+        String path = "E:/resource/course/" + courseId;
         File dest = new File(path + "/" + fileName);
         if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
             dest.getParentFile().mkdir();
@@ -118,13 +118,13 @@ public class CourseResourceController {
     }
 
     @RequestMapping("/download")
-    public Map<String,Object> downLoad(@RequestParam("resourceID")int resourceId, HttpServletResponse response) throws UnsupportedEncodingException {
+    public Map<String,Object> downLoad(@RequestParam("resourceID")int resourceID, HttpServletResponse response) throws UnsupportedEncodingException {
         Map<String,Object> result = new HashMap<>();
         int flag = 1;
-        CourseResourceDto r = courseResourceService.queryCourseResourceByResourceId(resourceId);
+        CourseResourceDto r = courseResourceService.queryCourseResourceByResourceId(resourceID);
         String filename = r.getResourceFilepath();
 
-        String filePath = "E:/resource/course" ;
+        String filePath = "E:/resource/course/" + r.getCourseId();
         File file = new File(filePath + "/" + filename);
         if(file.exists()){ //判断文件父目录是否存在
             response.setContentType("application/vnd.ms-excel;charset=UTF-8");

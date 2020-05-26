@@ -106,7 +106,7 @@ public class StudentQuestionController {
     public Map<String,Object> submitAllQuestion(@RequestBody Map sq,
                                                 HttpServletRequest request){
         int studentId = (int)request.getSession().getAttribute("userId");
-        int homeworkId = (int) sq.get("homeworkID");
+        int homeworkId = Integer.parseInt(sq.get("homeworkID").toString());
         Map<String,Object> result = new HashMap<>();
         List<QuestionDto> question = questionService.queryQuestionByHomeworkId(homeworkId);
         List<String> questionS = new ArrayList<>();
