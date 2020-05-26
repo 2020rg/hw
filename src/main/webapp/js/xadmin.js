@@ -61,11 +61,11 @@
 	            return;
 	        }
 	    };
-	
+
 		this.add_lay_tab(title,url,id);
 	    this.set_data(title,url,id);
 	    element.tabChange('xbs_tab', id);
-	
+
 	}
 
   Xadmin.prototype.del_tab = function (id) {
@@ -80,7 +80,7 @@
 
 	Xadmin.prototype.add_lay_tab = function(title,url,id) {
 		element.tabAdd('xbs_tab', {
-	       title: title 
+	       title: title
 	        ,content: '<iframe tab-id="'+id+'" frameborder="0" src="'+url+'" scrolling="yes" class="x-iframe"></iframe>'
 	        ,id: id
 	    })
@@ -118,7 +118,7 @@
 	        content: url
 	    });
 	    if(full){
-	       layer.full(index); 
+	       layer.full(index);
 	    }
 	}
 	/**
@@ -215,7 +215,7 @@
 		});
 	};
 	win.xadmin = new Xadmin();
-	
+
 }(window);
 
 layui.use(['layer','element','jquery'],function() {
@@ -280,7 +280,7 @@ layui.use(['layer','element','jquery'],function() {
                 $(this).siblings().removeClass('open');
             }
         }
-        event.stopPropagation(); 
+        event.stopPropagation();
     })
     var left_tips_index = null;
     $('.left-nav #nav').on('mouseenter', '.left-nav-li', function(event) {
@@ -291,7 +291,7 @@ layui.use(['layer','element','jquery'],function() {
     })
 
     $('.left-nav #nav').on('mouseout', '.left-nav-li', function(event) {
-        layer.close(left_tips_index); 
+        layer.close(left_tips_index);
     })
     // 隐藏左侧
     $('.container .left_open i').click(function(event) {

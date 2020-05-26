@@ -1,3 +1,4 @@
+/*
 $(document).ready(function () {
     layui.use('element', function () {
         var element = layui.element;
@@ -134,7 +135,7 @@ var score_data = {
 }
 
 
-/* * *
+/!* * *
  * 查看已批作业详情时，后应该为数据表格（错题表格）
  <table id="demo" lay-filter="test"></table>
  layui.use('table', function(){
@@ -162,4 +163,162 @@ var score_data = {
 });
 
 https://www.layui.com/doc/modules/table.html
- * * */
+ * * *!/
+*/
+
+$(document).ready(function () {
+
+    // $.get("http://localhost:8080/stuHw/querySHByStudentId",function(data){
+    //     initialPage(data);
+    // });
+
+    $.ajax({
+        type:"POST",
+        url:"http://localhost:8080/stuHw/querySHByStudentId",
+        async:false,
+        success:function (msg) {
+            //msg.SubmitOkNum=msg.SubmitOkNum-msg.HasCheckedNum;
+            initialPage(msg);
+            console.log(JSON.stringify(msg));
+        },
+        error:function () {
+            alert("获取作业数据失败");
+        }
+    });
+    //initialPage(initialData);
+
+    layui.use('element', function () {
+        var element = layui.element;
+        //事件监听
+        element.on('tab(homework-statics)', function (data) {
+            console.log(data);
+        });
+    });
+    layui.use('layer', function () {
+        var $ = layui.jquery
+            , layer = layui.layer //
+    });
+
+
+    //flag=2
+    $(".toHasChecked").click(function () {
+        var id=$(this).attr("id");
+        var hwMsg={"homeworkID":id,"flag":"2"};
+        var StriMsg=JSON.stringify(hwMsg);
+        window.location.href="question.html?Homework="+window.encodeURIComponent(StriMsg);
+        //var url="question.html?HomeworkID="id"&&flag=2";
+    });
+
+    //flag 1
+    $(".toNotChecked").click(function () {
+        alert("查看未批改作业");
+        var id=$(this).attr("id");
+        var hwMsg={"homeworkID":id,"flag":"1"};
+        var StriMsg=JSON.stringify(hwMsg);
+        window.location.href="question.html?Homework="+window.encodeURIComponent(StriMsg);
+    });
+
+    //flag 0
+    $(".checkHomework").click(function () {
+        alert("查看作业并提交");
+        //这里与查看未批改作业操作一致
+        //
+        //需要传递的字符串
+        var id=$(this).attr("id");
+        var hwMsg={"homeworkID":id};
+        var StriMsg=JSON.stringify(hwMsg);
+        console.log(StriMsg);
+        window.location.href="SubmitHomework.html?Homework="+ window.encodeURIComponent(StriMsg);
+    });
+});
+
+function initialPage(datas)
+{
+    //alert("inital is processed");
+    //hw-info
+    var info= "<br>"+
+        "<h3>还有<b>"+datas.SubmitNotOkNum+"</b>份作业未提交</h3>"+
+        "<br><br>"+
+        "<h3>有<b>"+datas.SubmitOkNum+"</b>份作业已提交</h3>"+
+        "<br><br>"+
+        "<h3>已有<b>"+datas.HasCheckedNum+"</b>份作业批改完成</h3>";
+    $(".hw-panel").append(info);
+
+    var i=0;
+    //SubmitNotOkList
+    var list1="";
+    var length1=datas.SubmitNotOkList.length;
+    for(i=0; i<length1; i++)
+    {
+        list1+="<div class=\"layui-card\">\n" +
+            "<div class=\"layui-card-header\">\n" +
+            "<h2>"+datas.SubmitNotOkList[i].courseName+
+            " "+datas.SubmitNotOkList[i].teacherName+
+            " <i>"+datas.SubmitNotOkList[i].homeworkTitle+"</i></h2>\n" +
+            "</div>\n" +
+            "<div class=\"layui-card-body\">\n" +
+            "<p>"+datas.SubmitNotOkList[i].homeworkIntroduce+"</p>\n" +
+            "<br>\n" +
+            "<i class=\"layui-icon layui-icon-date\">截至日期：<b>"+datas.SubmitNotOkList[i].homeworkDDL+"</b></i>\n" +
+            //"<i class=\"layui-icon layui-icon-time\">距离截至日期还有：<b>3</b>天</i>\n" +
+            "<i class=\"layui-icon layui-icon-right checkHomework\" id=\""+datas.SubmitNotOkList[i].homeworkID
+            +"\" style=\"float:right\">\n" +
+            "前往查看</i>\n" +
+            "</div>\n" +
+            "</div>";
+    }
+    $("#SubmitNotOkList").append(list1);
+
+    //NotCheckedList
+    var list2="";
+    var length2=datas.SubmitOkNotCheckList.length;
+    for(i=0; i<length2; i++)
+    {
+        list2+="<div class=\"layui-card\">\n" +
+            "<div class=\"layui-card-header\">\n" +
+            "<h2>"+datas.SubmitOkNotCheckList[i].courseName+
+            " "+datas.SubmitOkNotCheckList[i].teacherName+
+            " <i>"+datas.SubmitOkNotCheckList[i].homeworkTitle+"</i></h2>\n" +
+            "</div>\n" +
+            "<div class=\"layui-card-body\">\n" +
+            "<p>"+datas.SubmitOkNotCheckList[i].homeworkIntroduce+"</p>\n" +
+            "<i class=\"layui-icon layui-icon-about\" style=\"float:right\">未批改</i>"+
+            "<br>\n" +
+            "<i class=\"layui-icon layui-icon-date\">截至日期：<b>"+datas.SubmitOkNotCheckList[i].homeworkDDL+"</b></i>\n" +
+            "<i class=\"layui-icon layui-icon-date\">提交日期：<b>"+datas.SubmitOkNotCheckList[i].submitTime+"</b></i>\n" +
+            //"<i class=\"layui-icon layui-icon-time\">距离截至日期还有：<b>3</b>天</i>\n" +
+            "<i class=\"layui-icon layui-icon-right toNotChecked\" id=\"" +datas.SubmitOkNotCheckList[i].homeworkID+
+            "\"style=\"float:right\">\n" +
+            "前往查看</i>\n" +
+            "</div>\n" +
+            "</div>";
+    }
+    $("#HasNotCheckedList").append(list2);
+
+    //HasCheckedList
+    var list3="";
+    var length3=datas.SubmitOkCheckedList.length;
+    for(i=0; i<length3; i++)
+    {
+        list3+="<div class=\"layui-card\">\n" +
+            "<div class=\"layui-card-header\">\n" +
+            "<h2>"+datas.SubmitOkCheckedList[i].courseName+
+            " "+datas.SubmitOkCheckedList[i].teacherName+
+            " <i>"+datas.SubmitOkCheckedList[i].homeworkTitle+"</i></h2>\n" +
+            "</div>\n" +
+            "<div class=\"layui-card-body\">\n" +
+            "<p>"+datas.SubmitOkCheckedList[i].homeworkIntroduce+"</p>\n" +
+            "<i class=\"layui-icon layui-icon-ok-circle\" style=\"float:right\">已批改</i>"+
+            "<br>\n" +
+            "<i class=\"layui-icon layui-icon-face-smile\"></i>\n" +
+            "<i class=\"layui-icon layui-icon-right toHasChecked\" id=\"" +datas.SubmitOkCheckedList[i].homeworkID+
+            "\"style=\"float:right\">\n" +
+            "前往查看</i>\n" +
+            "</div>\n" +
+            "</div>";
+    }
+    $("#HasCheckedList").append(list3);
+}
+
+
+

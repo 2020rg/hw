@@ -11,8 +11,7 @@
 <head>
     <title>登录</title>
     <script type="text/javascript" src="layui/layui.js"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquerysession.js"></script>
+
     <link rel="stylesheet" href="layui/css/layui.css">
     <link rel="stylesheet" href="css/login.css">
 
@@ -68,6 +67,8 @@
 
 
 </div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquerysession.js"></script>
 <script>
     layui.use(['form', 'layedit', 'laydate'], function() {
         var form = layui.form

@@ -1,10 +1,11 @@
+<!--
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <title>DDL表</title>
-    <!--引用-->
+    &lt;!&ndash;引用&ndash;&gt;
     <link rel="stylesheet" type="text/css" href="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/css/studentClass.css">
 </head>
@@ -38,7 +39,7 @@
     </ul>
 
     <div class="mainContent">
-        <!--上层布局-->
+        &lt;!&ndash;上层布局&ndash;&gt;
         <div class="layui-row" style="margin-top: 100px;margin-left: 20px">
             <div class="layui-col-md6">
                 <div class="grid-demo grid-demo-bg1">
@@ -55,7 +56,7 @@
             </div>
         </div>
 
-        <!--下层-->
+        &lt;!&ndash;下层&ndash;&gt;
         <div class="layui-row" style="margin-top: 20px;">
             <div style="padding: 20px; background-color: #F2F2F2;margin:auto 30px 20px 30px;">
                 <div class="layui-row layui-col-space15">
@@ -112,7 +113,7 @@
             </div>
         </div>
     </div>
-    <!--脚本引用-->
+    &lt;!&ndash;脚本引用&ndash;&gt;
     <script src="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/lib/jquery-3.4.1.js"></script>
     <script src="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/layui/layui.js"></script>
     <script src="../../../../../../../学习文件/大三下/hw-master%20(2)/hw-master/src/main/webapp/js/studentClass.js"></script>
@@ -127,4 +128,270 @@
    
 </body>
 
+</html>-->
+
+<!--
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>DDL表</title>
+    &lt;!&ndash;引用&ndash;&gt;
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../css/studentClass.css">
+</head>
+
+<body>
+    <ul class="layui-nav" style="position:fixed; width:100%; top:0">
+        <li class="layui-nav-item"><b class="brand">HW</b></li>
+        <li class="layui-nav-item">
+            <a href="">我的作业<span class="layui-badge">2</span></a>
+        </li>
+        <li class="layui-nav-item" style="float: right;">
+            <a href=""><img src="../img/person.jpg" class="layui-nav-img">小明</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">个人信息</a></dd>
+                <dd><a href="">其他</a></dd>
+            </dl>
+        </li>
+    </ul>
+
+    <ul class="layui-nav layui-nav-tree layui-nav-side" style="margin-top: 66px;">
+        <li class="layui-nav-item"><a href="studentClass.html">
+            <i class="layui-icon layui-icon-table" style="color: white;"></i>  我加入的班级</a></li>
+        <li class="layui-nav-item"><a href="homeworkStatics.html">
+            <i class="layui-icon layui-icon-survey" style="color: white;"></i>  作业统计</a></li>
+        <li class="layui-nav-item"><a href="ddlList.html">
+            <i class="layui-icon layui-icon-date" style="color: white;"></i>  DDL表</a></li>
+        <li class="layui-nav-item"><a href="wrongTextbooks.html">
+            <i class="layui-icon layui-icon-table" style="color: white;"></i>  错题本</a></li>
+        <li class="layui-nav-item"><a href="discussArea.html">
+            <i class="layui-icon layui-icon-reply-fill" style="color: white;"></i>  讨论区</a></li>
+    </ul>
+
+    <div class="mainContent">
+        &lt;!&ndash;上层布局&ndash;&gt;
+        <div class="layui-row" style="margin-top: 100px;margin-left: 20px">
+            <div class="layui-col-md6">
+                <div class="grid-demo grid-demo-bg1">
+                    <label class="layui-form-label" style="width: auto">请选择时间：</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="chooseTime" type="text" placeholder="年-月-日">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="grid-demo" style="text-align: right;margin-right: 30%;font-size: 20px">
+                    <i class="layui-icon layui-icon-add-circle"></i><label> 添加</label>
+                </div>
+            </div>
+        </div>
+
+        &lt;!&ndash;下层&ndash;&gt;
+        <div class="layui-row" style="margin-top: 20px;">
+            <div style="padding: 20px; background-color: #F2F2F2;margin:auto 30px 20px 30px;">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12">
+&lt;!&ndash;                        <div class="layui-card">&ndash;&gt;
+&lt;!&ndash;                            <div class="layui-card-header" style="height: auto;font-size: 24px">&ndash;&gt;
+&lt;!&ndash;                                软件工程3-4班  王峰老师&ndash;&gt;
+&lt;!&ndash;                                <br/>&ndash;&gt;
+&lt;!&ndash;                                作业2&ndash;&gt;
+&lt;!&ndash;                                <div style="float: right;margin-right: 20px">&ndash;&gt;
+&lt;!&ndash;                                    <i class="layui-icon layui-icon-tips" style="color: red"></i>&ndash;&gt;
+&lt;!&ndash;                                    <label style="font-size: 16px">未完成</label>&ndash;&gt;
+&lt;!&ndash;                                </div>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                            <div class="layui-card-body">&ndash;&gt;
+&lt;!&ndash;                                <label>作业内容</label>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                            <div class="layui-card-body">&ndash;&gt;
+&lt;!&ndash;                                <i class="layui-icon layui-icon-about" style="color: green"></i>&ndash;&gt;
+&lt;!&ndash;                                <label>这次的作业比较多，应提前完成</label>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                            <div class="layui-card-body">&ndash;&gt;
+&lt;!&ndash;                                <label><i class="layui-icon layui-icon-date"></i> 截止日期:2020/5/18</label>&ndash;&gt;
+&lt;!&ndash;                                <label><i class="layui-icon layui-icon-tips" style="color: red"></i>距离截止日期还有1天</label>&ndash;&gt;
+&lt;!&ndash;                                <a href="" style="float: right;margin-right: 20px"><i class="layui-icon layui-icon-next"></i> 前往完成 </a>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                        </div>&ndash;&gt;
+
+&lt;!&ndash;                        <div class="layui-card">&ndash;&gt;
+&lt;!&ndash;                            <div class="layui-card-header" style="height: auto;font-size: 24px">&ndash;&gt;
+&lt;!&ndash;                                软件工程3-4班  王峰老师&ndash;&gt;
+&lt;!&ndash;                                <br/>&ndash;&gt;
+&lt;!&ndash;                                作业2&ndash;&gt;
+&lt;!&ndash;                                <div style="float: right;margin-right: 20px">&ndash;&gt;
+&lt;!&ndash;                                    <i class="layui-icon layui-icon-tips" style="color: red"></i>&ndash;&gt;
+&lt;!&ndash;                                    <label style="font-size: 16px">未完成</label>&ndash;&gt;
+&lt;!&ndash;                                </div>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                            <div class="layui-card-body">&ndash;&gt;
+&lt;!&ndash;                                <label>作业内容</label>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                            <div class="layui-card-body">&ndash;&gt;
+&lt;!&ndash;                                <i class="layui-icon layui-icon-about" style="color: green"></i>&ndash;&gt;
+&lt;!&ndash;                                <label>这次的作业比较多，应提前完成</label>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                            <div class="layui-card-body">&ndash;&gt;
+&lt;!&ndash;                                <label><i class="layui-icon layui-icon-date"></i> 截止日期:2020/5/18</label>&ndash;&gt;
+&lt;!&ndash;                                <label><i class="layui-icon layui-icon-tips" style="color: red"></i>距离截止日期还有1天</label>&ndash;&gt;
+&lt;!&ndash;                                <a href="" style="float: right;margin-right: 20px"><i class="layui-icon layui-icon-next"></i> 前往完成 </a>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                        </div>&ndash;&gt;
+&lt;!&ndash;                    </div>&ndash;&gt;
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    &lt;!&ndash;脚本引用&ndash;&gt;
+    <script src="../lib/jquery-3.4.1.js"></script>
+    <script src="../layui/layui.js"></script>
+    <script src="../js/studentClass.js"></script>
+    <script>
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#chooseTime'
+            });
+        });
+    </script>
+
+</body>
+
+</html>-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>DDL表</title>
+    <!--引用-->
+    <link rel="stylesheet" type="text/css" href="../../layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/studentClass.css">
+</head>
+
+<body>
+<ul class="layui-nav" style="position:fixed; width:100%; top:0">
+    <li class="layui-nav-item"><b class="brand">HW</b></li>
+    <li class="layui-nav-item">
+        <a href="">我的作业<span class="layui-badge">2</span></a>
+    </li>
+    <li class="layui-nav-item" style="float: right;">
+        <a href=""><img src="../../img/person.jpg" class="layui-nav-img">小明</a>
+        <dl class="layui-nav-child">
+            <dd><a href="">个人信息</a></dd>
+            <dd><a href="">其他</a></dd>
+        </dl>
+    </li>
+</ul>
+
+<ul class="layui-nav layui-nav-tree layui-nav-side" style="margin-top: 66px;">
+    <li class="layui-nav-item"><a href="studentClass.html">
+        <i class="layui-icon layui-icon-table" style="color: white;"></i>  我加入的班级</a></li>
+    <li class="layui-nav-item"><a href="homeworkStatics.html">
+        <i class="layui-icon layui-icon-survey" style="color: white;"></i>  作业统计</a></li>
+    <li class="layui-nav-item"><a href="ddlList.html">
+        <i class="layui-icon layui-icon-date" style="color: white;"></i>  DDL表</a></li>
+    <li class="layui-nav-item"><a href="wrongTextbooks.html">
+        <i class="layui-icon layui-icon-table" style="color: white;"></i>  错题本</a></li>
+    <li class="layui-nav-item"><a href="discussArea.html">
+        <i class="layui-icon layui-icon-reply-fill" style="color: white;"></i>  讨论区</a></li>
+</ul>
+
+<div class="mainContent">
+    <!--上层布局-->
+    <div class="layui-row" style="margin-top: 100px;margin-left: 20px">
+        <div class="layui-col-md6">
+            <div class="grid-demo grid-demo-bg1">
+                <label class="layui-form-label" style="width: auto">请选择时间：</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" id="chooseTime" type="text" placeholder="年-月-日">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="grid-demo" style="text-align: right;margin-right: 30%;font-size: 20px">
+                <i class="layui-icon layui-icon-add-circle"></i><label> 添加</label>
+            </div>
+        </div>
+    </div>
+
+    <!--下层-->
+    <div class="layui-row" style="margin-top: 20px;">
+        <div style="padding: 20px; background-color: #F2F2F2;margin:auto 30px 20px 30px;">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12" id="ddlContainer">
+                    <!--            <div class="layui-card">
+                                    <div class="layui-card-header" style="height: auto;font-size: 24px">
+                                        软件工程3-4班  王峰老师
+                                        <br/>
+                                        作业2
+                                        <div style="float: right;margin-right: 20px">
+                                            <i class="layui-icon layui-icon-tips" style="color: red"></i>
+                                            <label style="font-size: 16px">未完成</label>
+                                        </div>
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <label>作业内容</label>
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <i class="layui-icon layui-icon-about" style="color: green"></i>
+                                        <label>这次的作业比较多，应提前完成</label>
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <label><i class="layui-icon layui-icon-date"></i> 截止日期:2020/5/18</label>
+                                        <label><i class="layui-icon layui-icon-tips" style="color: red"></i>距离截止日期还有1天</label>
+                                        <a href="" style="float: right;margin-right: 20px"><i class="layui-icon layui-icon-next"></i> 前往完成 </a>
+                                    </div>
+                                </div>
+
+                                <div class="layui-card">
+                                    <div class="layui-card-header" style="height: auto;font-size: 24px">
+                                        软件工程3-4班  王峰老师
+                                        <br/>
+                                        作业2
+                                        <div style="float: right;margin-right: 20px">
+                                            <i class="layui-icon layui-icon-tips" style="color: red"></i>
+                                            <label style="font-size: 16px">未完成</label>
+                                        </div>
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <label>作业内容</label>
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <i class="layui-icon layui-icon-about" style="color: green"></i>
+                                        <label>这次的作业比较多，应提前完成</label>
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <label><i class="layui-icon layui-icon-date"></i> 截止日期:2020/5/18</label>
+                                        <label><i class="layui-icon layui-icon-tips" style="color: red"></i>距离截止日期还有1天</label>
+                                        <a href="" style="float: right;margin-right: 20px"><i class="layui-icon layui-icon-next"></i> 前往完成 </a>
+                                    </div>
+                                </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--脚本引用-->
+<script src="../../lib/jquery-3.4.1.js"></script>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/studentClass.js"></script>
+<script src="../../js/ddlList.js"></script>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#chooseTime'
+        });
+    });
+</script>
+
+</body>
+
 </html>
+
