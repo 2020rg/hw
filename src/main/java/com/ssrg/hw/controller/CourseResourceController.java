@@ -145,10 +145,10 @@ public class CourseResourceController {
     }
 
     @RequestMapping("/download")
-    public Map<String,Object> downLoad(@RequestParam("resourceID")String resourceID, HttpServletResponse response) throws UnsupportedEncodingException {
+    public Map<String,Object> downLoad(@RequestParam("resourceID")int resourceID, HttpServletResponse response) throws UnsupportedEncodingException {
         Map<String,Object> result = new HashMap<>();
         int flag = 1;
-        int resourceId = Integer.parseInt(resourceID);
+        int resourceId = resourceID;
         CourseResourceDto r = courseResourceService.queryCourseResourceByResourceId(resourceId);
         String filename = r.getResourceFilepath();
 

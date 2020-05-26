@@ -215,6 +215,7 @@
 				//async: false,  //当有返回值以后才会进行后面的js程序。
 				success: function (msg) {
 					for(var i = 0; i < msg.resourceList.length; i++){
+						var v = msg.resourceList[i].resourceID;
 						$("#resources").append(
 								"<tr>" +
 								"<td>" +
@@ -224,10 +225,10 @@
 						        "<td>"+ msg.resourceList[i].remark +"</td>" +
 						        "<td>"+ msg.resourceList[i].fileName +"</td>" +
 								"<td class='td-manage'>" +
-								"<a onclick='member_stop(this,'10001')' href='http://localhost:8080/resource/download?resourceID='" + msg.resourceList[i].resourceID +"title='下载'>" +
+								"<a href='http://localhost:8080/resource/download?resourceID=" + v +"' title='下载'>" +
 								"<i class='layui-icon'>&#xe601;</i>" +
 						        "</a>" +
-						        "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:;'>" +
+						        "<a title='删除' href='http://localhost:8080/resource/deleteCourseResource?resourceID=" + v + "'>" +
 								"<i class='layui-icon'>&#xe640;</i>" +
 						        "</a>" +
 						"</td>" +

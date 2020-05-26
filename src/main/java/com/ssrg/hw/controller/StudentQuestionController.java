@@ -112,7 +112,6 @@ public class StudentQuestionController {
         List<String> questionS = new ArrayList<>();
 
         for(QuestionDto q:question){
-            q.getQuestionId();
             questionS.add(String.valueOf(q.getQuestionId()));
         }
 

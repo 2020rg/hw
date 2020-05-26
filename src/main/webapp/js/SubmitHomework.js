@@ -131,7 +131,7 @@ function initialPage(data) {
             "            </label>\n" +
             "            <div class=\"layui-input-block\">\n" +
             "                <textarea placeholder=\"请输入内容\" class=\"layui-textarea\" " +
-            "id=\"answer" + i + "\" name=\"" + data[i].questionID + "\"></textarea>\n" +
+            "id=\"answer" + i + "\" name=\"" + data[i].questionId + "\"></textarea>\n" +
             "            </div>\n" +
             "        </div>";
     }
