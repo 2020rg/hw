@@ -80,14 +80,15 @@
 										<th>
 										  <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
 										</th>
-										<th>课件名</th>
 										<th>课程名</th>								
-										<th>班级</th>
+										<th>上传时间</th>
 										<th>备注</th>
+										<th>文件名</th>
 										<th>操作</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="resources">
+								    <!--
 									<tr>
 										<td>
 											<input type="checkbox" name="" lay-skin="primary"></td>
@@ -104,7 +105,7 @@
 										  </a>
 										</td>
 									</tr>
-																		<tr>
+									<tr>
 										<td>
 											<input type="checkbox" name="" lay-skin="primary"></td>
 										<td>0002</td>
@@ -119,7 +120,8 @@
 										    <i class="layui-icon">&#xe640;</i>
 										  </a>
 										</td>
-									</tr>									<tr>
+									</tr>
+									<tr>
 										<td>
 											<input type="checkbox" name="" lay-skin="primary"></td>
 										<td>0003</td>
@@ -134,7 +136,8 @@
 										    <i class="layui-icon">&#xe640;</i>
 										  </a>
 										</td>
-									</tr>									<tr>
+									</tr>
+									<tr>
 										<td>
 											<input type="checkbox" name="" lay-skin="primary"></td>
 										<td>0004</td>
@@ -149,7 +152,8 @@
 										    <i class="layui-icon">&#xe640;</i>
 										  </a>
 										</td>
-									</tr>									<tr>
+									</tr>
+									<tr>
 										<td>
 											<input type="checkbox" name="" lay-skin="primary"></td>
 										<td>0005</td>
@@ -164,7 +168,8 @@
 										    <i class="layui-icon">&#xe640;</i>
 										  </a>
 										</td>
-									</tr>									<tr>
+									</tr>
+									<tr>
 										<td>
 											<input type="checkbox" name="" lay-skin="primary"></td>
 										<td>0006</td>
@@ -180,6 +185,7 @@
 										  </a>
 										</td>
 									</tr>
+									-->
 								</tbody>
 							</table>
 						</div>
@@ -198,7 +204,44 @@
 			</div>
 		</div>
 
-		
+
+	<script type="text/javascript" src="../../../js/jquery.js"></script>
+	<script type="text/javascript" src="../../../js/jquerysession.js"></script>
+	<script>
+		$(document).ready(function () {
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:8080/resource/getCR",//请求程序页面
+				//async: false,  //当有返回值以后才会进行后面的js程序。
+				success: function (msg) {
+					for(var i = 0; i < msg.resourceList.length; i++){
+						$("#resources").append(
+								"<tr>" +
+								"<td>" +
+								"<input type='checkbox' name='' lay-skin='primary'></td>" +
+								"<td>" + msg.resourceList[i].courseName +"</td>" +
+								"<td>"+ msg.resourceList[i].uploadTime +"</td>" +
+						        "<td>"+ msg.resourceList[i].remark +"</td>" +
+						        "<td>"+ msg.resourceList[i].fileName +"</td>" +
+								"<td class='td-manage'>" +
+								"<a onclick='member_stop(this,'10001')' href='http://localhost:8080/resource/download?resourceID='" + msg.resourceList[i].resourceID +"title='下载'>" +
+								"<i class='layui-icon'>&#xe601;</i>" +
+						        "</a>" +
+						        "<a title='删除' onclick='member_del(this,'要删除的id')' href='javascript:;'>" +
+								"<i class='layui-icon'>&#xe640;</i>" +
+						        "</a>" +
+						"</td>" +
+						"</tr>"
+					);
+
+					}
+				}
+			});
+		});
+	</script>
+
+
+
 
 	</body>
 

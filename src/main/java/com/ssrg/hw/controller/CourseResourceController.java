@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +31,31 @@ public class CourseResourceController {
     {
         List<CourseResourceDto> courseResourceList=courseResourceService.queryCourseResourceByCourseId(courseId);
         return courseResourceList;
+    }
+
+    @RequestMapping("/getCR")
+    public Map<String,Object> getCR(HttpServletRequest request){
+        int teacherId = (int)request.getSession().getAttribute("userId");
+        List<CourseDto> courses = courseService.queryCourseByTeacherId(teacherId);
+
+        List<Map<String,Object>> resources = new ArrayList<>();
+        Map<String,Object> result = new HashMap<>();
+
+        for(CourseDto c:courses){
+            List<CourseResourceDto> crs = courseResourceService.queryCourseResourceByCourseId(c.getCourseId());
+            for(CourseResourceDto cr:crs){
+                Map<String,Object> map = new HashMap<>();
+                map.put("resourceID",cr.getResourceId());
+                map.put("courseName",c.getCourseName());
+                map.put("uploadTime",cr.getUploadTime());
+                map.put("remark",cr.getResourceName());
+                map.put("fileName",cr.getResourceFilepath());
+                resources.add(map);
+            }
+        }
+
+        result.put("resourceList",resources);
+        return result;
     }
 
 
@@ -118,10 +145,11 @@ public class CourseResourceController {
     }
 
     @RequestMapping("/download")
-    public Map<String,Object> downLoad(@RequestParam("resourceID")int resourceID, HttpServletResponse response) throws UnsupportedEncodingException {
+    public Map<String,Object> downLoad(@RequestParam("resourceID")String resourceID, HttpServletResponse response) throws UnsupportedEncodingException {
         Map<String,Object> result = new HashMap<>();
         int flag = 1;
-        CourseResourceDto r = courseResourceService.queryCourseResourceByResourceId(resourceID);
+        int resourceId = Integer.parseInt(resourceID);
+        CourseResourceDto r = courseResourceService.queryCourseResourceByResourceId(resourceId);
         String filename = r.getResourceFilepath();
 
         String filePath = "E:/resource/course/" + r.getCourseId();

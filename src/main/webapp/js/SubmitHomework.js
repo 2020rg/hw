@@ -37,6 +37,15 @@ $(document).ready(function () {
         //监听提交
         form.on('submit(demo1)', function (data) {
 
+            var o = {};
+            var questions = data.field;
+            for(var attr in questions){
+                var s = questions[attr];
+                o[attr.toString()] = s;
+            }
+            o["homeworkID"] = parseInt(hwid);
+            var json = JSON.stringify(o);
+            /*
             var homeworkMsg={"homeworkId": hwid};
             var fieldMsg=data.field;
 
@@ -56,6 +65,26 @@ $(document).ready(function () {
 
             layer.alert(JSON.stringify(postdata), {
                 title: '最终的提交信息'
+            });
+           */
+
+            $.ajax({
+                type: "POST",//这里请求的地址未给出
+                url: "http://localhost:8080/sq/submitAllQuestion",//请求程序页面
+                async: false,//当有返回值以后才会进行后面的js程序。
+                data: json,//请求需要发送的处理数据
+                dataType:"json",
+                contentType:"application/json",
+                success: function (msg) {
+                    if(msg.flag===1){
+                        alert("提交成功");
+                    }else if(msg.flag===0){
+                        alert("提交失败");
+                    }
+                },
+                error:function(msg){
+                    alert("提交错误,原因是"+JSON.stringify(msg));
+                }
             });
 
             // $.ajax({
